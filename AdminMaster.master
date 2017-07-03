@@ -1,0 +1,241 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMaster.master.cs" Inherits="AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Welcome Admin</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+ <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-social.css" rel="stylesheet"/>
+    <link href="css/Footer-with-button-logo.css" rel="stylesheet"/>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body data-spy="scroll" data-target="#my-navbar" style="background-size:cover; background-color:#fff; margin-top:7%">
+    <form id="form1" runat="server">
+    <div>
+        <!--Navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+
+                 <!-- Navbar Brand with logo-->
+                <a href="Home.aspx" class="navbar-brand"><i class="fa fa-paint-brush"></i> Craft Store</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                
+                <ul class="nav navbar-nav">
+
+                    <li class="active"><a href="AdminHome.aspx"><span class="glyphicon glyphicon-home"
+					aria-hidden="true"></span> Home</a></li>
+                    <li><a href="AdminAddproduct.aspx"><i class="fa fa-product-hunt"></i> Add Product</a></li>
+                    <li><a href="#"><i class="fa fa-image"></i> Products</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                                <li><a id="myCart">
+					<i class="fa fa-shopping-cart"></i>
+					Cart</a>
+				</li>
+                <li><a id="logoutButton" href="Home.aspx">
+				<span class="glyphicon glyphicon-log-out"></span>
+				Logout</a></li>
+                    
+				<%--<li><a id="loginButton" href="Login.aspx">
+					<span class="glyphicon glyphicon-log-in"></span>
+					Login</a>
+				</li>--%>
+		</ul>
+            </div>
+
+
+        </div>
+    </nav>
+    <!--end navbar-->
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+      </asp:ContentPlaceHolder>
+          </form>
+        <!-- RESERVATION modal feature implementation -->
+        <div id="reserveModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reserve Table </h4>
+              </div>
+              <div class="modal-body">
+                <!-- Original Reservation Form implementation  -->
+                 <form class="form-horizontal" role="form" id="reservationForm">
+                            <div class="form-group">
+                                <label for="user-name" class="col-lg-2 control-label">Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="user-name" placeholder="Enter your name" />
+                                </div>
+                            </div>
+                            <!--end form group-->
+
+
+                            <div class="form-group">
+                                <label for="user-email" class="col-lg-2 control-label">Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="user-email" placeholder="Enter your email" />
+                                </div>
+                            </div>
+                            <!--end form group-->
+
+                            <div class="form-group">
+                                <label for="user-url" class="col-lg-2 control-label">Your website</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="user-url" placeholder="If you have any" />
+                                </div>
+                            </div>
+                            <!--end form group-->
+
+
+                            <div class="form-group">
+                                <label for="user-message" class="col-lg-2 control-label">Any message</label>
+                                <div class="col-lg-10">
+                                    <textarea name="user-message" id="user-message" class="form-control" cols="20" rows="10"
+                                        placeholder="Enter your message"></textarea>
+                                </div>
+                            </div>
+                            <!--end form group-->
+
+
+
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>        
+                                           
+                 </form>
+              </div> <!-- /End modal Body -->
+            </div> <!--/End modal Content -->
+          </div> <!-- /End modal Dialog -->
+        </div> <!-- /End RESERVE modal -->
+
+
+
+
+
+
+    <!--footer-->
+
+
+    <footer id="myFooter">
+      
+      <div class="container">
+          
+         <div class="row">
+               
+                 <div class="col-sm-3">
+                                
+                      <h2 class="logo"><a href="#"><i class="fa fa-paint-brush"></i> Craft Store</a></h2>
+                  
+                 </div>
+                   
+                     
+                 <div class="col-sm-2">
+                             
+                    <h5>Get started</h5>
+                               
+                       <ul>
+                                    
+                           <li><a href="#">Home</a></li>
+                                    
+                           <li><a href="#">Sign up</a></li>
+                                   
+                           <li><a href="#">Downloads</a></li>
+                              
+                      </ul>
+                            
+                 </div>
+                           
+                
+                 <div class="col-sm-2">
+                               
+                     <h5>About us</h5>
+                               
+                      <ul>
+                                   
+                        <li><a href="#">Company Information</a></li>
+                                   
+                        <li><a href="#">Contact us</a></li>
+                                   
+                        <li><a href="#">Reviews</a></li>
+                                
+                      </ul>
+                            
+                </div>
+                            
+
+                <div class="col-sm-2">
+                               
+                    <h5>Support</h5>
+                               
+                    <ul>
+                                    
+                       <li><a href="#">FAQ</a></li>
+                                    
+                       <li><a href="#">Help desk</a></li>
+                                    
+                       <li><a href="#">Forums</a></li>
+                                
+                   </ul>
+                           
+                </div>
+                            
+
+                <div class="col-sm-3">
+                                
+                   <div class="social-networks">
+                                   
+                      <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    
+                      <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                   
+                      <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+                               
+                   </div>
+                                
+                   
+                   <a data-toggle="modal" data-target="#reserveModal" id="reserveButton" type="button" class="btn" 
+						style="white-space:normal !important;">Contact us</a>
+                            
+                </div>
+          </div>
+      </div>
+        <div class="footer-copyright">
+            <p>&copy 2016 Copyright Text </p>
+        </div>
+    </footer>
+
+    </div>
+  
+
+     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
