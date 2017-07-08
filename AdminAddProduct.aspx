@@ -4,7 +4,7 @@
     <%-- <link href="css/Login.css" rel="stylesheet"/>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <div class="container">
+        <div class="container" style="margin-bottom:300px">
         <div class="form-horizontal">
             <h2>Add Product</h2>
             <hr />
@@ -43,7 +43,7 @@
              <div class="form-group">
                 <asp:Label ID="Label4" runat="server" CssClass="col-md-2 control-label" Text="Category"></asp:Label>
                 <div class="col-md-3">
-                    <asp:DropDownList ID="ddlCategory"  AutoPostBack="true" CssClass="form-control" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlCategory" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="ddlCategory" InitialValue="0"></asp:RequiredFieldValidator>
                 </div>
             </div>
@@ -59,7 +59,8 @@
             <div class="form-group">
                 <asp:Label ID="Label6" runat="server" CssClass="col-md-2 control-label" Text="Size"></asp:Label>
                 <div class="col-md-3">
-                    <asp:CheckBoxList ID="cblSize"  CssClass="form-control" runat="server" RepeatDirection="Horizontal"></asp:CheckBoxList>
+                     <asp:TextBox ID="txtSize" CssClass="form-control" runat="server"></asp:TextBox>
+   
                 </div>
             </div>
             
@@ -67,8 +68,15 @@
                 <asp:Label ID="Label7" runat="server" CssClass="col-md-2 control-label" Text="Quantity"></asp:Label>
                 <div class="col-md-3">
                     <asp:TextBox ID="txtQuantity" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtSelPrice"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtQuantity"></asp:RequiredFieldValidator>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <asp:Label ID="Label10" runat="server" CssClass="col-md-2 control-label" Text="Colour"></asp:Label>
+                <div class="col-md-3">
+                    <asp:TextBox ID="colour" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
             </div>
             
             <div class="form-group">
@@ -91,7 +99,7 @@
                 <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
                 <div class="col-md-3">
                     <asp:FileUpload ID="fuImg01" CssClass="form-control" runat="server" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>
+                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>--%>
                 </div>
             </div>
         
@@ -125,9 +133,43 @@
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
-                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default"/>
+                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
                 </div>
+                <asp:Label ID="Message" runat="server" Text="Label"></asp:Label>
             </div>
+        </div>
+
+
+  <h1>Products</h1>
+        <hr />
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">All Products</div>
+
+            <asp:Repeater ID="rptrArtists" runat="server">
+                <HeaderTemplate>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Products</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <th><%# Eval("ArtistID") %></th>
+                        <td><%# Eval("ArtistName") %></td>
+                        <td>Edit</td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </tbody>
+            </table>
+                </FooterTemplate>
+            </asp:Repeater>
         </div>
     </div>
 </asp:Content>
