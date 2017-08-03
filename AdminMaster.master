@@ -8,14 +8,18 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+  
  <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
     <link href="css/font-awesome.min.css" rel="stylesheet"/>
     <link href="css/bootstrap-social.css" rel="stylesheet"/>
     <link href="css/Footer-with-button-logo.css" rel="stylesheet"/>
-
+      <style>
+    .dropdown-menu > li > a {
+  color: #fff;
+     }
+</style>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -49,7 +53,7 @@
                     <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"
 					aria-hidden="true"></span> Manage<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="background-color:#373737;">
                                     <li><a href="AdminAddArtist.aspx">Add Artist</a></li>
                                     <li><a href="AdminAddCategory.aspx">Add Category</a></li>
                                     <li><a href="SubCategory.aspx">Add Sub Category</a></li>
