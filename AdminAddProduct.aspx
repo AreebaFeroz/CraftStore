@@ -52,7 +52,7 @@
                 <asp:Label ID="Label5" runat="server" CssClass="col-md-2 control-label" Text="Sub Category"></asp:Label>
                 <div class="col-md-3">
                     <asp:DropDownList ID="ddlSubCategory"  AutoPostBack="true" CssClass="form-control" runat="server"></asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="ddlSubCategory" InitialValue="0"></asp:RequiredFieldValidator>
+                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator5" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="ddlSubCategory" InitialValue="0"></asp:RequiredFieldValidator>--%>
                 </div>
             </div>
             
@@ -83,8 +83,7 @@
                 <asp:Label ID="Label8" runat="server" CssClass="col-md-2 control-label" Text="Descriptions"></asp:Label>
                 <div class="col-md-3">
                     <asp:TextBox ID="txtDesc" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtDesc"></asp:RequiredFieldValidator>
-                </div>
+                   </div>
             </div>
             
             <%--<div class="form-group">

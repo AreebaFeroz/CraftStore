@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.IO;
 public partial class AdminAddProduct : System.Web.UI.Page
 {
     String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
@@ -129,6 +129,44 @@ public partial class AdminAddProduct : System.Web.UI.Page
             {
                 cmd.Parameters.AddWithValue("@COD", 0.ToString());
             }
+
+            // Read the file and convert it to Byte Array
+            
+            string filePath = fuImg01.PostedFile.FileName;
+            string filename = Path.GetFileName(filePath);
+            string ext = Path.GetExtension(filename);
+            string contenttype = String.Empty;
+                //Set the contenttype based on File Extension
+               switch(ext)
+                 {
+                     case ".jpg":
+                         contenttype = "image/jpg";
+                         break;
+                     case ".png":
+                         contenttype = "image/png";
+                         break;
+                     case ".gif":
+                         contenttype = "image/gif";
+                         break;
+                 }
+               if (contenttype != String.Empty)
+               {
+
+                   Stream fs = fuImg01.PostedFile.InputStream;
+                   BinaryReader br = new BinaryReader(fs);
+                   Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+
+                   //insert the file into database
+
+                   cmd.Parameters.AddWithValue("@ImageType", contenttype);
+                   cmd.Parameters.AddWithValue("@Image", bytes);
+                  
+               }
+            
+
+
+
+
             con.Open();
             int k = cmd.ExecuteNonQuery();
             if (k != 0)
@@ -142,7 +180,18 @@ public partial class AdminAddProduct : System.Web.UI.Page
             }
 
             //Int64 ProductID = Convert.ToInt64(cmd.ExecuteScalar());
-
+            txtPName.Text = string.Empty;
+            txtSelPrice.Text = string.Empty;
+            colour.Text = string.Empty;
+            txtQuantity.Text = string.Empty;
+            txtSize.Text = string.Empty;
+            txtDesc.Text = string.Empty;
+            ddlCategory.ClearSelection();
+            ddlCategory.Items.FindByValue("0").Selected = true;
+            ddlSubCategory.ClearSelection();
+            ddlSubCategory.Items.FindByValue("0").Selected = true;
+            ddlArtist.ClearSelection();
+            ddlArtist.Items.FindByValue("0").Selected = true;
 
 
 
