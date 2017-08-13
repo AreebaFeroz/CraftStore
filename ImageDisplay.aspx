@@ -19,6 +19,11 @@
     width: 300px;                 /* fixed width */
 
          }
+         .divider {
+         margin: 5px;
+
+         }
+
  </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -27,27 +32,36 @@
     <div class="jumbotron">
         <div class="container text-center">
             <h1><i class="fa fa-paint-brush"></i> Craft Store</h1>
-             <div class="row">
+            <div class="row">
                <div class="col-xs-12">
-                  <div class="btn-group">
+                    <div class="btn-group">
                       <ul class="nav nav-tabs">
-                          <li class="active"><a data-toggle="tab" href="#menu1" class="btn btn-lg btn-block " style="background-color:red; color:white;">Graphics</a></li>
-                         <!--<li><a data-toggle="tab" href="#menu1" class="btn btn-lg " style="background-color:orange; color:white;">Handicrafts</a></li> -->
-                          <li class="dropdown">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#menu2" class="btn btn-lg btn-block " style="background-color:orange; color:white;">Potraits
-                              <span class="caret"></span></a>
+                       <asp:Repeater ID="rptrCat" runat="server">
+                              <ItemTemplate>   
+         <li class="dropdown">
+             <div class="divider">
+                 <a id="ddlCategory" data-toggle="dropdown" class="btn btn-lg btn-block dropdown-toggle" style="background-color:red; color:white;"><%# Eval("CategoryName") %></a>
+                 <ul class="dropdown-menu">
+                     <asp:Repeater ID="rptrSubCat" runat="server">
+                              <ItemTemplate> 
+                                <li><a data-toggle="tab"><%# Eval("SubCategoryName") %></a></li>
+                            </ItemTemplate>
+                    </asp:Repeater>
+                              </ul>   
+             </div>
+         </li>
+                              </ItemTemplate>
+                          </asp:Repeater>
+                          <%--<span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                 <li><a data-toggle="tab" href="#menu3">Paintings</a></li>
                                 <li><a data-toggle="tab" href="#menu7">Sketches</a></li>
-                              </ul>
-                            </li>
-
-
-                          <li><a data-toggle="tab" href="#menu3" class="btn btn-lg " style="background-color:yellow; color:white;">Paintings</a></li>
+                              </ul>--%>
+<%--                          <li><a data-toggle="tab" href="#menu3" class="btn btn-lg " style="background-color:yellow; color:white;">Paintings</a></li>
                           <li><a data-toggle="tab" href="#menu4" class="btn btn-lg " style="background-color:green; color:white;">Jewellery</a></li>
                           <li><a data-toggle="tab" href="#menu5" class="btn btn-lg " style="background-color:blue; color:white;">Interios</a></li>
                           <li><a data-toggle="tab" href="#menu6" class="btn btn-lg " style="background-color:purple; color:white;">Handicrafts</a></li>
-                          <li><a data-toggle="tab" href="#menu7" class="btn btn-lg " style="background-color:black; color:white;">Sketches</a></li>
+                          <li><a data-toggle="tab" href="#menu7" class="btn btn-lg " style="background-color:black; color:white;">Sketches</a></li>--%>
                     </ul>
                 </div>
               </div>
