@@ -36,20 +36,22 @@
                <div class="col-xs-12">
                     <div class="btn-group">
                       <ul class="nav nav-tabs">
-                       <asp:Repeater ID="rptrCat" runat="server">
+                       <asp:Repeater ID="rptrCat" runat="server" OnItemDataBound="OnItemDataBound">
                               <ItemTemplate>   
-         <li class="dropdown">
-             <div class="divider">
-                 <a id="ddlCategory" data-toggle="dropdown" class="btn btn-lg btn-block dropdown-toggle" style="background-color:red; color:white;"><%# Eval("CategoryName") %></a>
-                 <ul class="dropdown-menu">
-                     <asp:Repeater ID="rptrSubCat" runat="server">
-                              <ItemTemplate> 
-                                <li><a data-toggle="tab"><%# Eval("SubCategoryName") %></a></li>
-                            </ItemTemplate>
-                    </asp:Repeater>
-                              </ul>   
-             </div>
-         </li>
+                                     <li class="dropdown">
+                                         <div class="divider">
+                                             <a id="ddlCategory" data-toggle="dropdown" class="btn btn-lg btn-block dropdown-toggle" style="background-color:red; color:white;"><%# Eval("CategoryName") %></a>
+                                             <ul class="dropdown-menu">
+                                                 <asp:Repeater ID="rptrSubCat" runat="server">
+                                                          <ItemTemplate> 
+                                                            <li><asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("SubCategoryID") %>' OnClick="SubCat_Click"><%# Eval("SubCategoryName") %></asp:LinkButton></li>
+                                                              <asp:HiddenField ID="hfSubCategoryID" runat="server" Value='<%# Eval("SubCategoryID") %>' />
+                                                        </ItemTemplate>
+                                                </asp:Repeater>
+                                                          </ul>   
+                                         </div>
+                                     </li>
+                                  <asp:HiddenField ID="hfCategoryID" runat="server" Value='<%# Eval("CategoryID") %>' />
                               </ItemTemplate>
                           </asp:Repeater>
                           <%--<span class="caret"></span></a>
@@ -122,5 +124,5 @@
         </div>
       </div>
         </div>
-   
+  
 </asp:Content>
