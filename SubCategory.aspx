@@ -23,8 +23,11 @@
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
+
                     <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
+                    <asp:Label ID="ErrorMessage" runat="server" Text=""></asp:Label>
                 </div>
+
             </div>
         </div>
          

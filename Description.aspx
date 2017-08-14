@@ -37,9 +37,9 @@
                 <div class="container">
                        <div class = "row">
 
-                              <div class = " col-xs-12 col-sm-6 col-md-6 pic-size">
+                              <div class = " col-xs-12 col-sm-offset-1 col-sm-6 col-md-offset-1 col-md-6 pic-size " style="height: 400px;width:530px;">
                                  <div class = "thumbnail">
-                                    <img src = "Images\graphics\image1.jpg" alt = "Generic placeholder thumbnail"  style="height: 350px;width:445px;">
+                                    <img src = "Images\graphics\image1.jpg" alt = "Generic placeholder thumbnail"  style="height: 400px;width:530px;">
                                  </div>
                                  
                                  
@@ -49,25 +49,39 @@
                                          <div class="container-fluid">
                                                 <div class="row">
                                                   <div class="col-sm-12">
-                                                    <div class="panel panel-default text-center" style="width: 347px;height: 372px;">
-                                                      <div class="panel-heading">
-                                                        <h1>Basic</h1>
+                                                    <div class="panel panel-default" style="width: 347px;height: 340px;">
+                                                      <div class="panel-heading text-center" >
+                                                        <h1>Product Name</h1>
                                                       </div>
                                                       <div class="panel-body">
-                                                        <p><strong>20</strong> Lorem</p>
-                                                        <p><strong>15</strong> Ipsum</p>
-                                                        <p><strong>5</strong> Dolor</p>
-                                                        <p><strong>2</strong> Sit</p>
-                                                        <p><strong>Endless</strong> Amet</p>
+                                                        <p><strong>Category:</strong> ------------</p>
+                                                        <p><strong>Sub-Category</strong> ------------</p>
+                                                        <p><strong>Artist:</strong> ------------</p>
+                                                        <p><strong>Price:</strong> ------------</p>
+                                                        <p><strong>Quantity:</strong> ------------</p>
+                                                        <p><strong>Description:</strong> ------------------------------------------------<br />------------------------------------------------<br /></p>
                                                       </div>
 
-                                                      <a href = "#" class = "btn btn-primary btn-lg" role = "button">
-                                                          <i class="fa fa-shopping-cart"> Buy Now</i>
-                                                       </a> 
+                                                      
                                                       <br><br>
                                                     </div> 
                                                    </div> 
                                                 </div>
+
+                                                <div class="row">
+                                                  <div class="col-sm-12">
+                                                    
+                                                      
+
+                                                      <a href = "#" class = "btn btn-primary btn-lg"  onclick="btnAddToCart_Click" role = "button" style="padding-right: 105px;padding-left: 105px;">
+                                                          <i class="fa fa-shopping-cart"> ADD TO CART</i>
+                                                       </a> 
+
+                                                    
+                                                   </div> 
+                                                </div>
+
+
                                           </div>
                                           
 

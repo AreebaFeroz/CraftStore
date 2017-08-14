@@ -7,9 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
+
+
 
 public partial class SubCategory : System.Web.UI.Page
 {
+
+    Accessible access = new Accessible();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -62,17 +67,50 @@ public partial class SubCategory : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
-        using (SqlConnection con = new SqlConnection(CS))
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO SubCategory(SubCategoryName,CategoryID) Values('" + SubCatName.Text + "','" + ddlCategory.SelectedItem.Value + "')", con);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            SubCatName.Text = string.Empty;
-            ddlCategory.ClearSelection();
-            ddlCategory.Items.FindByValue("0").Selected = true;
-        }
-        BindSubCatRptr();
+        
+
+            if (checkSub(SubCatName.Text))
+            {
+                ErrorMessage.ForeColor = Color.Red;
+                ErrorMessage.Text = "This subcategory already exists";
+  
+
+            }
+            else
+            {
+                String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(CS))
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO SubCategory(SubCategoryName,CategoryID) Values('" + SubCatName.Text + "','" + ddlCategory.SelectedItem.Value + "')", con);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SubCatName.Text = string.Empty;
+                    ddlCategory.ClearSelection();
+                    ddlCategory.Items.FindByValue("0").Selected = true;
+                }
+                BindSubCatRptr();
+            }
+        
     }
+
+    public bool checkSub(string subcat)
+    {
+        DataTable dt = new DataTable();
+        bool retval;
+        SqlCommand cmd = new SqlCommand("SELECT SubCategoryName FROM SubCategory WHERE SubCategoryName=@Subcat");
+        cmd.Parameters.AddWithValue("@Subcat", subcat);
+        dt = access.SelectFromDatabase(cmd);
+        if (dt.Rows.Count > 0)
+        {
+            retval = true;
+        }
+        else
+        {
+            retval = false;
+        }
+        return retval;
+    }
+
+
 
 }

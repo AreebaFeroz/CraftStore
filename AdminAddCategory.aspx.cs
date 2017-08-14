@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Drawing;
 
 public partial class AdminAddCategory : System.Web.UI.Page
 {
+
+    Accessible access = new Accessible();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -38,14 +41,62 @@ public partial class AdminAddCategory : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
-        using (SqlConnection con = new SqlConnection(CS))
+
+        if (checkCat(CategoryName.Text))
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO Category(CategoryName) Values('" + CategoryName.Text + "')", con);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            CategoryName.Text = String.Empty;
+            ErrorMessage.ForeColor = Color.Red;
+            ErrorMessage.Text = "This Category already exists";
+
+
         }
-        BindCategoriesRptr();
+        else
+        {
+
+
+            String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Category(CategoryName) Values('" + CategoryName.Text + "')", con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                CategoryName.Text = String.Empty;
+            }
+            BindCategoriesRptr();
+        }
     }
+
+
+
+
+    public bool checkCat(string cat)
+    {
+        DataTable dt = new DataTable();
+        bool retval;
+        SqlCommand cmd = new SqlCommand("SELECT CategoryName FROM Category WHERE CategoryName=@Cat");
+        cmd.Parameters.AddWithValue("@Cat", cat);
+        dt = access.SelectFromDatabase(cmd);
+        if (dt.Rows.Count > 0)
+        {
+            retval = true;
+        }
+        else
+        {
+            retval = false;
+        }
+        return retval;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
