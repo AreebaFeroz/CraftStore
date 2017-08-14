@@ -23,7 +23,17 @@
          margin: 5px;
 
          }
+       .dropdown:hover .dropdown-menu {
+        display: block;
+        }
+         .dropdown-menu {
+             background-color:red;
+             color:white;
+         }
 
+       .dropdown-menu:hover {
+        color:black;
+        }
  </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -40,12 +50,12 @@
                               <ItemTemplate>   
                                      <li class="dropdown">
                                          <div class="divider">
-                                             <a id="ddlCategory" data-toggle="dropdown" class="btn btn-lg btn-block dropdown-toggle" style="background-color:red; color:white;"><%# Eval("CategoryName") %></a>
+                                             <asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("CategoryID") %>'  OnClick="Cat_Click"  CssClass="btn btn-lg btn-block dropdown-toggle" style="background-color:red; color:white;"><%# Eval("CategoryName") %></asp:LinkButton>
                                              <ul class="dropdown-menu">
                                                  <asp:Repeater ID="rptrSubCat" runat="server">
                                                           <ItemTemplate> 
                                                             <li><asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("SubCategoryID") %>' OnClick="SubCat_Click"><%# Eval("SubCategoryName") %></asp:LinkButton></li>
-                                                              <asp:HiddenField ID="hfSubCategoryID" runat="server" Value='<%# Eval("SubCategoryID") %>' />
+                                                             <%-- <asp:HiddenField ID="hfSubCategoryID" runat="server" Value='<%# Eval("SubCategoryID") %>' />--%>
                                                         </ItemTemplate>
                                                 </asp:Repeater>
                                                           </ul>   
@@ -54,21 +64,11 @@
                                   <asp:HiddenField ID="hfCategoryID" runat="server" Value='<%# Eval("CategoryID") %>' />
                               </ItemTemplate>
                           </asp:Repeater>
-                          <%--<span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                <li><a data-toggle="tab" href="#menu3">Paintings</a></li>
-                                <li><a data-toggle="tab" href="#menu7">Sketches</a></li>
-                              </ul>--%>
-<%--                          <li><a data-toggle="tab" href="#menu3" class="btn btn-lg " style="background-color:yellow; color:white;">Paintings</a></li>
-                          <li><a data-toggle="tab" href="#menu4" class="btn btn-lg " style="background-color:green; color:white;">Jewellery</a></li>
-                          <li><a data-toggle="tab" href="#menu5" class="btn btn-lg " style="background-color:blue; color:white;">Interios</a></li>
-                          <li><a data-toggle="tab" href="#menu6" class="btn btn-lg " style="background-color:purple; color:white;">Handicrafts</a></li>
-                          <li><a data-toggle="tab" href="#menu7" class="btn btn-lg " style="background-color:black; color:white;">Sketches</a></li>--%>
+                        
                     </ul>
                 </div>
               </div>
              </div>
-         
         </div>
     </div>
  <!-- END jumbotron-->
@@ -77,13 +77,13 @@
   <div class="tab-content">
     
 
-     <!-- ******************graphics*************-->
+     <!-- ******************products*************-->
               
                             
          
      <div class="panel panel-default">
             <!-- Default panel contents -->
-
+      <%--   <div style="height:500px; background-image:url('Images\back1.jpg'); background-size:cover; visibility:hidden;"></div>--%>
             <asp:Repeater ID="rptrImages" runat="server">
                 <HeaderTemplate>
                    

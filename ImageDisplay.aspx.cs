@@ -14,9 +14,11 @@ public partial class ImageDisplay : System.Web.UI.Page
     DataTable images = new DataTable();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //ImagesRptr();
-        CategoryRptr();
- 
+        if(!this.IsPostBack)
+        {
+            AllImage();
+        }
+            CategoryRptr();   
     }
  
 
@@ -39,6 +41,14 @@ public partial class ImageDisplay : System.Web.UI.Page
 
     //}
 
+    protected void AllImage()
+    {
+        SqlCommand cmd = new SqlCommand("Select * from Products");
+        images = access.SelectFromDatabase(cmd);
+        rptrImages.DataSource = images;
+        rptrImages.DataBind();
+    }
+
     private void CategoryRptr()
     {
         SqlCommand cmd = new SqlCommand("select * from Category");
@@ -50,9 +60,21 @@ public partial class ImageDisplay : System.Web.UI.Page
 
     protected void SubCat_Click(object sender, EventArgs e)
     {
+        
         LinkButton lb = (LinkButton)(sender);
         int subCategory = Convert.ToInt32(lb.CommandArgument);
         SqlCommand cmd = new SqlCommand("Select * from Products WHERE SubCategoryID='" + subCategory + "'");
+        images = access.SelectFromDatabase(cmd);
+        rptrImages.DataSource = images;
+        rptrImages.DataBind();
+    }
+
+    protected void Cat_Click(object sender, EventArgs e)
+    {
+        
+        LinkButton lb = (LinkButton)(sender);
+        int category = Convert.ToInt32(lb.CommandArgument);
+        SqlCommand cmd = new SqlCommand("Select * from Products WHERE CategoryID='" + category + "'");
         images = access.SelectFromDatabase(cmd);
         rptrImages.DataSource = images;
         rptrImages.DataBind();
@@ -74,7 +96,7 @@ public partial class ImageDisplay : System.Web.UI.Page
         }
     }
 
-   
+    
    
     
 }
