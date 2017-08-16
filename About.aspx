@@ -19,7 +19,7 @@
                 
 
            
-                <a href="Products.aspx" class="btn btn-lg btn-warning">Visit Store and Shop Now</a>
+                <a href="ImageDisplay.aspx" class="btn btn-lg btn-warning">Visit Store and Shop Now</a>
           
         </div>
     </div>

@@ -67,7 +67,7 @@
                 
 
            
-                <a href="products.aspx" class="btn btn-lg btn-warning">Visit Store and Shop Now</a>
+                <a href="ImageDisplay.aspx" class="btn btn-lg btn-warning">Visit Store and Shop Now</a>
           
         </div>
     </div>
@@ -134,80 +134,54 @@
         <section>
             
             <div class = "row" style="margin-left:100px;">
-                              <div class = " col-xs-12 col-sm-4 col-md-4 pic-size">
-                                 <div class = "thumbnail">
-                                    <img src = "Images\graphics\image1.jpg" alt = "Generic placeholder thumbnail" class="pic-size-1" style="height: 210px;">
-                                 </div>
-                                 
-                                 <div class = "caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Some sample text. Some sample text.</p>
-                                    
-                                    <p>
-                                       <a href = "#" class = "btn btn-primary" role = "button">
-                                          <i class="fa fa-shopping-cart"> Buy Now</i>
-                                       </a> 
-                                       
-                                       <a href = "#" class = "btn btn-default" role = "button">
-                                          More...
-                                       </a>
-                                    </p>
-                                    
-                                 </div>
-                              </div>
-                              
-                              <div class = " col-xs-12  col-sm-4 col-md-4 pic-size">
-                                 <div class = "thumbnail">
-                                    <img src = "Images\graphics\image2.jpg" alt = "Generic placeholder thumbnail" class="pic-size-1" style="height: 210px;">
-                                 </div>
-                                 
-                                 <div class = "caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Some sample text. Some sample text.</p>
-                                    
-                                    <p>
-                                       <a href = "#" class = "btn btn-primary" role = "button">
-                                          <i class="fa fa-shopping-cart"> Buy Now</i>
-                                       </a> 
-                                       
-                                       <a href = "#" class = "btn btn-default" role = "button">
-                                          More...
-                                       </a>
-                                    </p>
+                
 
-                                    
-                                 </div>
-                              </div>
-                              
-                              <div class = "col-xs-12 col-sm-4 col-md-4 pic-size">
-                                 <div class = "thumbnail">
-                                    <img src = "Images\graphics\image3.jpg" alt = "Generic placeholder thumbnail" class="pic-size-1" style="height: 210px;">
-                                 </div>
+                <asp:Repeater ID="rptrImages" runat="server">
+                <HeaderTemplate>
+                   
+                </HeaderTemplate>
+                <ItemTemplate>
+                 <div class="tab-pane fade in active">    
+         <%--       <div class = "row">--%>
+                    <div class = " col-xs-12 col-sm-4 col-md-4 pic-size">
+                        <div class = "thumbnail">
+                        <asp:Image ID="Image1" runat="server" alt="image" height="200" width="300" style="border:5px solid black"  ImageUrl='<%#Accessible.GetImage(Eval("Image")) %>' />
+                        </div>
                                  
-                                 <div class = "caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Some sample text. Some sample text.</p>
-                                    
-                                    <p>
-                                       <a href = "#" class = "btn btn-primary" role = "button">
-                                          <i class="fa fa-shopping-cart"> Buy Now</i>
-                                       </a> 
-                                       
-                                       <a href = "#" class = "btn btn-default" role = "button">
-                                          More...
-                                       </a>
-                                    </p>
-
-                                    
-                                 </div>
-                              </div>
+                        <div class = "caption">
+                     
+                        <h3 style="color:white;"><%# Eval("ProductName") %></h3>
+                        <p style="color:white;"><%# Eval("Description") %>.</p>
                               
-                 </div> <!-- end row-->
+                        <p>
+                            <a href = "#" class = "btn btn-primary" role = "button">
+                                <i class="fa fa-shopping-cart"> Buy Now</i>
+                            </a> 
+                            <a href = "#" class = "btn btn-default" role = "button">
+                                More...
+                            </a>
+                        </p>
+                                    
+                        </div>
+                    </div>
+                  <%--  </div>--%>
+                </div>
+                  
+                </ItemTemplate>
+                <FooterTemplate>
+                    </tbody>
+            </table>
+                </FooterTemplate>
+            </asp:Repeater>
+
+
+                
+            </div> <!-- end row-->
 
                  
             <div class = "row" style="margin-left:100px;">
                               <div class = " col-xs-offset-4 col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4">
-                                    <a href="products.html" class="btn btn-lg btn-warning">View more products. . .</a>
+                                    <a href="ImageDisplay.aspx" class="btn btn-lg btn-warning">View more products. . .</a>
                               </div>
             </div>
 

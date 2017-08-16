@@ -74,43 +74,47 @@
  <!-- END jumbotron-->
 
     <div class="container">
-  <div class="tab-content">
+  <div class="tab-content" style="margin-left:100px;">
     
 
      <!-- ******************products*************-->
               
                             
          
-     <div class="panel panel-default">
+     <div >
             <!-- Default panel contents -->
       <%--   <div style="height:500px; background-image:url('Images\back1.jpg'); background-size:cover; visibility:hidden;"></div>--%>
             <asp:Repeater ID="rptrImages" runat="server">
-                <HeaderTemplate>
-                   
-                </HeaderTemplate>
+                
                 <ItemTemplate>
                  <div class="tab-pane fade in active">    
          <%--       <div class = "row">--%>
                     <div class = " col-xs-12 col-sm-4 col-md-4 pic-size">
+                       
+                        <a href="Description.aspx?ProductID=<%# Eval("ProductID") %>" style="text-decoration:none;">
+
                         <div class = "thumbnail">
-                        <asp:Image ID="Image1" runat="server" alt="image" height="200" width="300" style="border:5px solid black"  ImageUrl='<%#Accessible.GetImage(Eval("Image")) %>' />
+                           <asp:Image ID="Image1" runat="server" height="200" width="300" style="border:5px solid black"  ImageUrl='<%#Accessible.GetImage(Eval("Image")) %>' />
                         </div>
                                  
                         <div class = "caption">
-                     
-                        <h3 style="color:white;"><%# Eval("ProductName") %></h3>
-                        <p style="color:white;"><%# Eval("Description") %>.</p>
+
+                           <h3 style="color:white;"><%# Eval("ProductName") %></h3>
+                           <p style="color:white;"><%# Eval("Description") %><div style="color:black ; font-size:1px;"><%# Eval("ProductID") %></div></p>
                               
-                        <p>
-                            <a href = "#" class = "btn btn-primary" role = "button">
-                                <i class="fa fa-shopping-cart"> Buy Now</i>
-                            </a> 
-                            <a href = "#" class = "btn btn-default" role = "button">
-                                More...
-                            </a>
-                        </p>
+                           <p>
+                              <a href = "#" class = "btn btn-primary" role = "button">
+                                 <i class="fa fa-shopping-cart"> Buy Now</i>
+                              </a> 
+                              <a href="Description.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-default" role = "button">
+                                View Details
+                              </a>
+                           </p>
                                     
                         </div>
+
+                     </a>
+
                     </div>
                   <%--  </div>--%>
                 </div>

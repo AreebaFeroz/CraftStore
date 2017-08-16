@@ -36,48 +36,55 @@
 <section>
                 <div class="container">
                        <div class = "row">
-
+                              <asp:Repeater ID="rptrImages" runat="server">
+                
+                               <ItemTemplate>
                               <div class = " col-xs-12 col-sm-offset-1 col-sm-6 col-md-offset-1 col-md-6 pic-size " style="height: 400px;width:530px;">
                                  <div class = "thumbnail">
-                                    <img src = "Images\graphics\image1.jpg" alt = "Generic placeholder thumbnail"  style="height: 400px;width:530px;">
+                                    <asp:Image ID="Image1" runat="server" alt="image" style="border:5px solid black; height: 400px;width:530px;"  ImageUrl='<%#Accessible.GetImage(Eval("Image")) %>' />
                                  </div>
                                  
                                  
                                  </div>
+                                   </ItemTemplate>
+                                  </asp:Repeater>
 
                                  <div class = " col-xs-12 col-sm-5 col-md-5 pic-size">
                                          <div class="container-fluid">
                                                 <div class="row">
-                                                  <div class="col-sm-12">
+                                                  <div class="col-xs-12 col-sm-12">
+                                                     <asp:Repeater ID="rptrProductDetails"  runat="server">
+                                                     <ItemTemplate>
                                                     <div class="panel panel-default" style="width: 347px;height: 340px;">
                                                       <div class="panel-heading text-center" >
-                                                        <h1>Product Name</h1>
+                                                        <h3><%#Eval("ProductName") %></h3>
                                                       </div>
                                                       <div class="panel-body">
-                                                        <p><strong>Category:</strong> ------------</p>
-                                                        <p><strong>Sub-Category</strong> ------------</p>
-                                                        <p><strong>Artist:</strong> ------------</p>
-                                                        <p><strong>Price:</strong> ------------</p>
-                                                        <p><strong>Quantity:</strong> ------------</p>
-                                                        <p><strong>Description:</strong> ------------------------------------------------<br />------------------------------------------------<br /></p>
+                                                        <p><strong>Category:</strong>  <%#Eval("CategoryID") %></p>
+                                                        <p><strong>Sub-Category</strong>  <%#Eval("SubCategoryID") %></p>
+                                                        <p><strong>Artist:</strong>  <%#Eval("ArtistID") %></p>
+                                                        <p><strong>Price:</strong> <%#Eval("Price") %></p>
+                                                        <p><strong>Quantity:</strong> <%#Eval("InStock") %></p>
+                                                        <p><strong>Description:</strong> <%#Eval("Description") %></p>
+                                                        <p><%# ((int)Eval("FreeDelivery")==1)?"Free Delivery":"" %> <%# ((int)Eval("30DayRet")==1)?"30 Days Returns":"" %> <p><%# ((int)Eval("COD")==1)?"Cash on Delivery":"" %></p>
+                                                             
                                                       </div>
-
+                                                        </ItemTemplate>
+                                                       </asp:Repeater>
                                                       
-                                                      <br><br>
+                                                      <br/><br/>
                                                     </div> 
                                                    </div> 
                                                 </div>
 
                                                 <div class="row">
-                                                  <div class="col-sm-12">
-                                                    
+                                                  <div class="col-xs-12 col-sm-12">
+                                                    <div  >
                                                       
+                                                        <asp:Button ID="btnAddToCart" OnClick="btnAddToCart_Click" runat="server" Text="ADD TO CART" class="btn btn-primary btn-lg" style="padding-right: 110px;padding-left: 110px;"/>
+                                                                                                                                                                     
 
-                                                      <a href = "#" class = "btn btn-primary btn-lg"  onclick="btnAddToCart_Click" role = "button" style="padding-right: 105px;padding-left: 105px;">
-                                                          <i class="fa fa-shopping-cart"> ADD TO CART</i>
-                                                       </a> 
-
-                                                    
+                                                    </div>
                                                    </div> 
                                                 </div>
 
