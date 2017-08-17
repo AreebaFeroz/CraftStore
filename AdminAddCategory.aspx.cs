@@ -15,9 +15,17 @@ public partial class AdminAddCategory : System.Web.UI.Page
     Accessible access = new Accessible();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["admin"] != null)
         {
-            BindCategoriesRptr();
+            if (!IsPostBack)
+            {
+                BindCategoriesRptr();
+            }
+
+        }
+        else
+        {
+            Response.Redirect("~/AdminLogin.aspx");
         }
 
     }

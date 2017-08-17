@@ -18,6 +18,34 @@ public partial class Cart : System.Web.UI.Page
         }
     }
 
+    protected void btnRemoveItem_Click(object sender, EventArgs e)
+    {
+        string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
+        LinkButton btn = (LinkButton)sender;
+        string PID = btn.CommandArgument;
+        List<String> CookiePIDList = CookiePID.Split(',').Select(i => i.Trim()).Where(i => i != string.Empty).ToList();
+        CookiePIDList.Remove(PID);
+        string CookiePIDUpdated = String.Join(",", CookiePIDList.ToArray());
+        if (CookiePIDUpdated == "")
+        {
+            HttpCookie CartProducts = Request.Cookies["OrderID"];
+            CartProducts.Values["OrderID"] = null;
+            CartProducts.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(CartProducts);
+
+        }
+        else
+        {
+            HttpCookie CartProducts = Request.Cookies["OrderID"];
+            CartProducts.Values["OrderID"] = CookiePIDUpdated;
+            CartProducts.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Add(CartProducts);
+
+        }
+        Response.Redirect("~/Cart.aspx");
+    
+    }
+
 
 
     private void BindCartProducts()
@@ -40,7 +68,7 @@ public partial class Cart : System.Web.UI.Page
                     String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
                     using (SqlConnection con = new SqlConnection(CS))
                     {
-                        using (SqlCommand cmd = new SqlCommand("select ProductName from Products where ProductID=" + ProductID + "", con))
+                        using (SqlCommand cmd = new SqlCommand("select * from Products where ProductID=" + ProductID + "", con))
                         {
                             cmd.CommandType = CommandType.Text;
                             using (SqlDataAdapter sda = new SqlDataAdapter(cmd))

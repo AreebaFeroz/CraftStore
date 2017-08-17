@@ -60,9 +60,9 @@
                                                         <h3><%#Eval("ProductName") %></h3>
                                                       </div>
                                                       <div class="panel-body">
-                                                        <p><strong>Category:</strong>  <%#Eval("CategoryID") %></p>
-                                                        <p><strong>Sub-Category</strong>  <%#Eval("SubCategoryID") %></p>
-                                                        <p><strong>Artist:</strong>  <%#Eval("ArtistID") %></p>
+                                                        <p><strong>Category:</strong>  <%#Eval("CategoryName") %></p>
+                                                        <p><strong>Sub-Category</strong>  <%#Eval("SubCategoryName") %></p>
+                                                        <p><strong>Artist:</strong>  <%#Eval("ArtistName") %></p>
                                                         <p><strong>Price:</strong> <%#Eval("Price") %></p>
                                                         <p><strong>Quantity:</strong> <%#Eval("InStock") %></p>
                                                         <p><strong>Description:</strong> <%#Eval("Description") %></p>

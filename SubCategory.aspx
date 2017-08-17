@@ -35,7 +35,7 @@
         <hr />
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">All Artists</div>
+            <div class="panel-heading">All SubCategories</div>
 
             <asp:Repeater ID="rptrSubCat" runat="server">
                 <HeaderTemplate>

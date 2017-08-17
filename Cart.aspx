@@ -39,13 +39,13 @@
 
 
                         </td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>3</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>1</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong><%#Eval("Price") %></strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                        <asp:LinkButton runat="server" type="button" class="btn btn-danger" CommandArgument='<%#Eval("ProductID") %>' OnClick="btnRemoveItem_Click">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </asp:LinkButton></td>
                                 
                     </tr>
                     </ItemTemplate>
