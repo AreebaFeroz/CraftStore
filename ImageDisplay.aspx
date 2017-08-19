@@ -103,7 +103,7 @@
                            <p style="color:white;"><%# Eval("Description") %><div style="color:black ; font-size:1px;"><%# Eval("ProductID") %></div></p>
                               
                            <p>
-                              <a href = "#" class = "btn btn-primary" role = "button">
+                              <a href="Description.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-primary" role = "button">
                                  <i class="fa fa-shopping-cart"> Buy Now</i>
                               </a> 
                               <a href="Description.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-default" role = "button">

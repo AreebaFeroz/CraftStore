@@ -63,24 +63,36 @@ public partial class Description : System.Web.UI.Page
     {
         Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
 
-        if (Request.Cookies["OrderID"] != null)
-        {
-            string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
-            CookiePID = CookiePID + "," + ProductID ;
 
-            HttpCookie Order = new HttpCookie("OrderID");
-            Order.Values["OrderID"] = CookiePID;
-            Order.Expires = DateTime.Now.AddDays(30);
-            Response.Cookies.Add(Order);
+        if (Session["user"] != null)
+        {
+
+
+
+            if (Request.Cookies["OrderID"] != null)
+            {
+                string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
+                CookiePID = CookiePID + "," + ProductID;
+
+                HttpCookie Order = new HttpCookie("OrderID");
+                Order.Values["OrderID"] = CookiePID;
+                Order.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Add(Order);
+            }
+            else
+            {
+                HttpCookie Order = new HttpCookie("OrderID");
+                Order.Values["OrderID"] = ProductID.ToString();
+                Order.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Add(Order);
+            }
+            Response.Redirect("~/Description.aspx?ProductID=" + ProductID);
         }
+
         else
         {
-            HttpCookie Order = new HttpCookie("OrderID");
-            Order.Values["OrderID"] = ProductID.ToString();
-            Order.Expires = DateTime.Now.AddDays(30);
-            Response.Cookies.Add(Order);
+            Response.Redirect("~/Login.aspx");
         }
-        Response.Redirect("~/Description.aspx?ProductID="+ProductID);
     }
 
 

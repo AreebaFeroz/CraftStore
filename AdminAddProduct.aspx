@@ -135,7 +135,7 @@
                     <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
                     <asp:Label ID="ErrorMessage" runat="server" Text=""></asp:Label>
                 </div>
-                <asp:Label ID="Message" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="Message" runat="server" ></asp:Label>
             </div>
         </div>
 

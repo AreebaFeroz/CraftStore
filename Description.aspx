@@ -78,14 +78,15 @@
                                                 </div>
 
                                                 <div class="row">
-                                                  <div class="col-xs-12 col-sm-12">
-                                                    <div  >
-                                                      
-                                                        <asp:Button ID="btnAddToCart" OnClick="btnAddToCart_Click" runat="server" Text="ADD TO CART" class="btn btn-primary btn-lg" style="padding-right: 110px;padding-left: 110px;"/>
-                                                                                                                                                                     
-
+                                                  <div class="col-xs-6 col-sm-6">
+                                                    <div>
+                                                        <asp:Button ID="btnAddToCart"  OnClick="btnAddToCart_Click" runat="server" Text="ADD TO CART" class="btn btn-primary btn-lg" style="padding-right: 12px;padding-left: 12px;"/>
                                                     </div>
-                                                   </div> 
+                                                  </div>
+                                                  <div class="col-xs-6 col-sm-6">
+                                                       <a href="Cart.aspx?ProductID=<%# Eval("ProductID") %>" class="btn btn-primary btn-lg" style="padding-right: 10px;padding-left: 10px; margin-left:15px;">VIEW YOUR CART</a>
+                                                        
+                                                  </div>   
                                                 </div>
 
 

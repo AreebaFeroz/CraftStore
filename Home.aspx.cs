@@ -30,6 +30,47 @@ public partial class Home : System.Web.UI.Page
         rptrImages.DataBind();
     }
 
-  
+    protected void btnAddToCart_Click(object sender, EventArgs e)
+    {
+        Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
+
+
+        if (Session["user"] != null)
+        {
+
+
+
+            if (Request.Cookies["OrderID"] != null)
+            {
+                string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
+                CookiePID = CookiePID + "," + ProductID;
+
+                HttpCookie Order = new HttpCookie("OrderID");
+                Order.Values["OrderID"] = CookiePID;
+                Order.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Add(Order);
+            }
+            else
+            {
+                HttpCookie Order = new HttpCookie("OrderID");
+                Order.Values["OrderID"] = ProductID.ToString();
+                Order.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Add(Order);
+            }
+            Response.Redirect("~/Home.aspx?ProductID=" + ProductID);
+        }
+
+        else
+        {
+            Response.Redirect("~/Login.aspx");
+        }
+    }
+
+
+
+    
+
+
+
 
 }

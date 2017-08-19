@@ -153,14 +153,16 @@
                         <h3 style="color:white;"><%# Eval("ProductName") %></h3>
                         <p style="color:white;"><%# Eval("Description") %>.</p>
                               
-                        <p>
-                            <a href = "#" class = "btn btn-primary" role = "button">
-                                <i class="fa fa-shopping-cart"> Buy Now</i>
-                            </a> 
-                            <a href = "#" class = "btn btn-default" role = "button">
-                                More...
-                            </a>
-                        </p>
+                         <p>
+
+                              <a href="Description.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-primary" role = "button"><span class=" fa fa-shopping-cart"></span>
+                                Buy Now
+                              </a>
+                              <a href="Description.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-default" role = "button">
+                                View Details
+                              </a>
+                           </p>
+
                                     
                         </div>
                     </div>

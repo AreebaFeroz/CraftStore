@@ -43,7 +43,7 @@ public partial class ImageDisplay : System.Web.UI.Page
 
     protected void AllImage()
     {
-        SqlCommand cmd = new SqlCommand("Select * from Products");
+        SqlCommand cmd = new SqlCommand("Select TOP 6 ProductID,ProductName,Price,Image,Description from Products ORDER BY ProductID");
         images = access.SelectFromDatabase(cmd);
         rptrImages.DataSource = images;
         rptrImages.DataBind();

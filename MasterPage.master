@@ -66,6 +66,7 @@
 					<i class="fa fa-shopping-cart"></i>
 					Cart<span class="badge" id="pCount" runat="server"></span></a>
 				</li>
+
                      <% if (Session["user"] == null) { %>
                     <li><a id="loginButton" href="Login.aspx">
 					<span class="glyphicon glyphicon-log-in"></span>

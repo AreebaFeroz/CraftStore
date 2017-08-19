@@ -60,6 +60,7 @@ public partial class Cart : System.Web.UI.Page
                 DataTable dtBrands = new DataTable();
                 Int64 CartTotal = 0;
                 Int64 Total = 0;
+                Int64 Discount = 0;
                 for (int i = 0; i < CookieDataArray.Length; i++)
                 {
                     string ProductID = CookieDataArray[i].ToString().Split('-')[0];
@@ -80,29 +81,61 @@ public partial class Cart : System.Web.UI.Page
 
                         }
                     }
+                    
+                    CartTotal += Convert.ToInt64(dtBrands.Rows[i]["Price"]);
+                    Discount = (CartTotal * 10) / 100;
 
                 }
 
                 rptrCartProducts.DataSource = dtBrands;
                 rptrCartProducts.DataBind();
+                divPriceDetails.Visible = true;
+
+                spanCartTotal.InnerText = CartTotal.ToString();
+                spanDiscount.InnerText = "Rs. " + Discount.ToString();
+                Total = CartTotal - Discount;
+                spanTotal.InnerText = "Rs. " + Total.ToString();
+                
+               
             }
 
             else
-{
-//TODO Show Empty Cart
-h2NoItems.InnerText = "Your Shopping Cart is Empty";
+                {
+                    //TODO Show Empty Cart
+                    h2NoItems.InnerText = "Your Shopping Cart is Empty";
+                    divPriceDetails.Visible = false;
+
+                 }
+           }
+              else
+                 {
+                   //TODO Show Empty Cart
+                         h2NoItems.InnerText = "Your Shopping Cart is Empty";
+                         divPriceDetails.Visible = false;
+
+
+                  }
+
+    }//end of BindCartProducts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
-}
-else
-{
-//TODO Show Empty Cart
-h2NoItems.InnerText = "Your Shopping Cart is Empty";
-
-
-}
-        }
-    }
 
 
 
