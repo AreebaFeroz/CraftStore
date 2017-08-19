@@ -17,6 +17,26 @@ public class Accessible
              return "data:image/jpg;base64," + Convert.ToBase64String((byte[])Img);
         }
 
+
+        public bool AddAndDelInDatabase(String SQL_Insert)
+        {
+            int x;
+            String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString.ToString();
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(SQL_Insert, con);
+
+                x = cmd.ExecuteNonQuery();
+
+            }
+            if (x > 0)
+                return true;
+            else
+                return false;
+
+        }
+
     public DataTable SelectFromDatabase(SqlCommand SQL_Select_Qury)
         {
            String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;

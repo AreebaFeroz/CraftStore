@@ -94,9 +94,5 @@ public partial class ImageDisplay : System.Web.UI.Page
             rptrSubCategories.DataSource = dtSubCat;
             rptrSubCategories.DataBind();
         }
-    }
-
-    
-   
-    
+    }    
 }

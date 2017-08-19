@@ -30,14 +30,14 @@
             <!-- Default panel contents -->
             <div class="panel-heading">All Artists</div>
 
-            <asp:Repeater ID="rptrCategories" runat="server">
+            <asp:Repeater ID="rptrCategories" runat="server" OnItemCommand="ItemCommand">
                 <HeaderTemplate>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Categories</th>
-                                <th>Edit</th>
+                               <%-- <th>Edit</th>--%>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,7 @@
                     <tr>
                         <th><%# Eval("CategoryID") %></th>
                         <td><%# Eval("CategoryName") %></td>
-                        <td>Edit</td>
+                        <td><asp:LinkButton ID ="button_delete" CausesValidation="false" CommandName="Delete" OnClientClick="return confirm('Are you sure to delete?');" CommandArgument = '<%# Eval("CategoryID") %>'   Text ="Delete" runat="server" ></asp:LinkButton>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>

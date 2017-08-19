@@ -48,7 +48,7 @@ public partial class Description : System.Web.UI.Page
     private void BindProductDetails()
     {
         Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
-        SqlCommand cmd = new SqlCommand("select A.*,B.*,C.*,D.* from Products A inner join Category B on B.CategoryID=A.CategoryID inner join SubCategory C on C.SubCategoryID=A.SubCategoryID inner join Artist D on D.ArtistId=A.ArtistID where ProductID=" + ProductID + "");
+        SqlCommand cmd = new SqlCommand("select A.*,B.*,C.*,D.* from Products A inner join Category B on B.CategoryID=A.CategoryID inner join SubCategory C on C.SubCategoryID=A.SubCategoryID inner join Artist D on D.ArtistID=A.ArtistID where ProductID=" + ProductID + "");
 
         //SqlCommand cmd = new SqlCommand("select * from Products where ProductID=" + ProductID + "");
         DataTable dtProducts = new DataTable();

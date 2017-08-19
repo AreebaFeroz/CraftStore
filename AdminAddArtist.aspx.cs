@@ -32,21 +32,11 @@ public partial class AdminAddArtist : System.Web.UI.Page
 
     private void BindArtistsRptr()
     {
-         String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
-         using (SqlConnection con = new SqlConnection(CS))
-         {
-             using (SqlCommand cmd = new SqlCommand("select * from Artist", con))
-             {
-                 using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                 {
-                     DataTable dtArtist = new DataTable();
-                     sda.Fill(dtArtist);
-                     rptrArtists.DataSource = dtArtist;
-                     rptrArtists.DataBind();
-                 }
-             }
-         }
-       
+         SqlCommand cmd = new SqlCommand("select * from Artist");
+         DataTable dtArtist = new DataTable();
+         dtArtist=access.SelectFromDatabase(cmd);
+         rptrArtists.DataSource = dtArtist;
+         rptrArtists.DataBind();
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
@@ -60,16 +50,46 @@ public partial class AdminAddArtist : System.Web.UI.Page
         }
         else
         {
-            String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(CS))
-            {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Artist(ArtistName) Values('" + ArtistName.Text + "')", con);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                ArtistName.Text = String.Empty;
-            }
-            BindArtistsRptr();
+           String SQL_Insert= "INSERT INTO Artist(ArtistName) Values('" + ArtistName.Text + "')";
+             if (access.AddAndDelInDatabase(SQL_Insert))
+             {
+                 ArtistName.Text = String.Empty;
+                 ErrorMessage.ForeColor= Color.Green;
+                 ErrorMessage.Text = "Successfully Added";
+             }
+             else{
+                 ErrorMessage.ForeColor=Color.Red;
+                 ErrorMessage.Text="Adding Artist not Successful";
+             }
+                BindArtistsRptr();    
         }
+    }
+
+
+
+    protected void ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        DataTable dt = new DataTable();
+        int artID = Convert.ToInt32(e.CommandArgument);
+        if (e.CommandName == "Delete")
+        {
+            SqlCommand cmd = new SqlCommand("select A.ArtistID,B.ProductName,B.ArtistID from Artist A inner join Products B on B.ArtistID=A.ArtistID where A.ArtistID =" + artID + "");
+           
+            dt = access.SelectFromDatabase(cmd);
+            if (dt.Rows.Count > 0)
+            {
+                ErrorMessage.Text="You will first need to delete Products by this artist";
+            }
+            else
+            {
+                access.AddAndDelInDatabase("delete from Artist where ArtistID='" + artID.ToString() + "'");
+                ErrorMessage.Text = "";
+                BindArtistsRptr();
+
+            }
+
+        }
+
     }
 
     public bool checkCat(string artist)

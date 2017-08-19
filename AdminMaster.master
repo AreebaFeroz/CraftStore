@@ -47,8 +47,8 @@
                 
                 <ul class="nav navbar-nav">
 
-                    <%--<li><a href="AdminHome.aspx"><span class="glyphicon glyphicon-home"
-					aria-hidden="true"></span> Home</a></li>--%>
+                    <li><a href="AdminHome.aspx"><span class="glyphicon glyphicon-home"
+					aria-hidden="true"></span> My Products</a></li>
                     <li><a href="AdminAddproduct.aspx"><i class="fa fa-product-hunt"></i> Add Product</a></li>
                     <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"

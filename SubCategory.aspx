@@ -37,7 +37,7 @@
             <!-- Default panel contents -->
             <div class="panel-heading">All SubCategories</div>
 
-            <asp:Repeater ID="rptrSubCat" runat="server">
+            <asp:Repeater ID="rptrSubCat" runat="server" OnItemCommand="ItemCommand">
                 <HeaderTemplate>
                     <table class="table">
                         <thead>
@@ -55,7 +55,7 @@
                         <th><%# Eval("SubCategoryID") %></th>
                         <td><%# Eval("SubCategoryName") %></td>
                         <td><%# Eval("CategoryName") %></td>
-                        <td>Edit</td>
+                        <td><asp:LinkButton ID ="button_delete" CausesValidation="false" CommandName="Delete" OnClientClick="return confirm('Are you sure to delete?');" CommandArgument = '<%# Eval("SubCategoryID") %>'   Text ="Delete" runat="server" ></asp:LinkButton></td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>

@@ -1,10 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Description.aspx.cs" Inherits="Description" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-
     <link href="css/description.css" rel="stylesheet" />
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -22,13 +19,6 @@
                            <span class="glyphicon glyphicon-scissors logo-small" style="color:green;  font-size:50px;"></span>  
                               <i class="fa fa-diamond logo-small" aria-hidden="true" style="color:silver; font-size:50px;"></i>   
                                  <i class="fa fa-paint-brush logo-small" aria-hidden="true" style="color:blue; font-size:50px;"></i>
-                    
-
-
-
-
-
-
 
                    </div>           
     </div>
