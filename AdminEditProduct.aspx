@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.master" AutoEventWireup="true" CodeFile="AdminAddProduct.aspx.cs" Inherits="AdminAddProduct" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.master" AutoEventWireup="true" CodeFile="AdminEditProduct.aspx.cs" Inherits="AdminEditProduct" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <%-- <link href="css/Login.css" rel="stylesheet"/>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <div class="container" style="margin-bottom:300px">
+    <div class="container" style="margin-bottom:300px">
         <div class="form-horizontal">
-            <h2>Add Product</h2>
+            <h2>Edit Product</h2><asp:Label ID="lbl_ID" Text="Test" runat="server"></asp:Label>
             <hr />
             <div class="form-group">
                 <asp:Label ID="Label1" runat="server" CssClass="col-md-2 control-label" Text="Name"></asp:Label>
@@ -15,14 +14,6 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidatorUsername" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPName"></asp:RequiredFieldValidator>
                 </div>
             </div>
-           
-            <%-- <div class="form-group">
-                <asp:Label ID="Label2" runat="server" CssClass="col-md-2 control-label" Text="Price"></asp:Label>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPrice"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
            
              <div class="form-group">
                 <asp:Label ID="Label2" runat="server" CssClass="col-md-2 control-label" Text="Selling Price"></asp:Label>
@@ -52,8 +43,7 @@
                 <asp:Label ID="Label5" runat="server" CssClass="col-md-2 control-label" Text="Sub Category"></asp:Label>
                 <div class="col-md-3">
                     <asp:DropDownList ID="ddlSubCategory"  AutoPostBack="true" CssClass="form-control" runat="server"></asp:DropDownList>
-                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator5" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="ddlSubCategory" InitialValue="0"></asp:RequiredFieldValidator>--%>
-                </div>
+                    </div>
             </div>
             
             <div class="form-group">
@@ -86,29 +76,27 @@
                    </div>
             </div>
             
-            <%--<div class="form-group">
-                <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Product Details"></asp:Label>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtPDetails" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPDetails"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
+           
+
         
             <div class="form-group">
-                <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
+                <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Upload Another Image"></asp:Label>
                 <div class="col-md-3">
                     <asp:FileUpload ID="fuImg01" CssClass="form-control" runat="server" />
-                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>--%>
-                </div>
+                   </div>
             </div>
-        
-           <%--<div class="form-group">
-                <asp:Label ID="Label12" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
-                <div class="col-md-3">
-                    <asp:FileUpload ID="fuImg02" CssClass="form-control" runat="server" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg02"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
+        <div class="form-group">
+            <asp:Repeater ID="rptrImages" runat="server">
+        <ItemTemplate>
+        <div class = " col-xs-12 col-sm-offset-1 col-sm-6 col-md-offset-1 col-md-6 pic-size " style="margin-left:100px; height: 200px;width:200px;">
+            <div class = "thumbnail">
+                <asp:Image ID="Image1" runat="server" alt="image" style="margin-left:100px;   border:5px solid black; height: 200px;width:200px;"  ImageUrl='<%#Accessible.GetImage(Eval("Image")) %>' />
+            </div>                                        
+        </div>
+         </ItemTemplate>
+            </asp:Repeater>
+            </div>
+   
         
             <div class="form-group">
                 <asp:Label ID="Label146" runat="server" CssClass="col-md-2 control-label" Text="Free Delivery"></asp:Label>
@@ -144,9 +132,9 @@
         <hr />
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">All Products</div>--%>
+            <div class="panel-heading">All Products</div>
 
-          <%--  <asp:Repeater ID="rptrProducts" runat="server">
+            <asp:Repeater ID="rptrArtists" runat="server">
                 <HeaderTemplate>
                     <table class="table">
                         <thead>
@@ -160,8 +148,8 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <th><%# Eval("ProductID") %></th>
-                        <td><%# Eval("ProductName") %></td>
+                        <th><%# Eval("ArtistID") %></th>
+                        <td><%# Eval("ArtistName") %></td>
                         <td>Edit</td>
                     </tr>
                 </ItemTemplate>
@@ -169,8 +157,9 @@
                     </tbody>
             </table>
                 </FooterTemplate>
-            </asp:Repeater>--%>
-        </div>
-    
+            </asp:Repeater>
+        </div>--%>
+    </div>
+
 </asp:Content>
 

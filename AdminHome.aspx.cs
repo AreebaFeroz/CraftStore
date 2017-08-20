@@ -29,6 +29,15 @@ public partial class AdminHome : System.Web.UI.Page
         }
     }
 
+    protected void DeleteProduct(object sender, CommandEventArgs e)
+    {
+        int ProductID = Convert.ToInt32(e.CommandArgument);
+        //ErrorMessage.Text = "You are going to delete product" + ProductID;
+        access.AddAndDelInDatabase("delete from Products where ProductID='" + ProductID.ToString() + "'");
+        Response.Redirect("~/AdminHome.aspx");
+
+
+    }
 
 
     protected void AllImage()

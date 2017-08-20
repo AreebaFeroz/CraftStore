@@ -74,9 +74,7 @@ public partial class Cart : System.Web.UI.Page
                             cmd.CommandType = CommandType.Text;
                             using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                             {
-
                                 sda.Fill(dtBrands);
-
                             }
 
                         }

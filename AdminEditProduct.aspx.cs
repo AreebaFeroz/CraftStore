@@ -9,20 +9,33 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Drawing;
-public partial class AdminAddProduct : System.Web.UI.Page
+
+public partial class AdminEditProduct : System.Web.UI.Page
 {
+
+    public int artID,catID;
     Accessible access = new Accessible();
     String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+
         if (Session["admin"] != null)
         {
             if (!IsPostBack)
             {
-                BindArtistsRptr();
-                BindCategoryRptr();
-                ddlSubCategory.Enabled = false;
+                if (Request.QueryString["PID"] != null)
+                {
+                    int PID = Convert.ToInt32(Request.QueryString["PID"]);
+                    ExtractData();
+                    BindArtistsRptr();
+                    BindCategoryRptr();
+                    //ddlSubCategory.Enabled = false;
+                    lbl_ID.Text = PID.ToString();
+                }
+                else 
+                {
+                    Response.Redirect("~/AdminHome.aspx");
+                }
             }
 
         }
@@ -31,6 +44,49 @@ public partial class AdminAddProduct : System.Web.UI.Page
             Response.Redirect("~/AdminLogin.aspx");
         }
     }
+
+    public void ExtractData()
+    {
+        using (SqlConnection con = new SqlConnection(CS))
+        {
+            con.Open();
+            int PID = Convert.ToInt32(Request.QueryString["PID"]);
+            SqlCommand cmd = new SqlCommand("select * from Products where ProductID='" + PID + "'", con);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+                    {
+                        txtPName.Text = rdr["ProductName"].ToString();
+                        artID = Convert.ToInt32(rdr["ArtistID"]);
+                        catID = Convert.ToInt32(rdr["CategoryID"]);
+                        txtSelPrice.Text = rdr["Price"].ToString();
+                        txtSize.Text = rdr["Size"].ToString();
+                        txtQuantity.Text = rdr["InStock"].ToString();
+                        colour.Text = rdr["Colour"].ToString();
+                        txtDesc.Text = rdr["Description"].ToString();
+                        rptrImages.DataSource = dt;
+                        rptrImages.DataBind();
+                        if (Convert.ToInt32(rdr["FreeDelivery"]) == 1)
+                        {
+                            cbFD.Checked = true;
+                        }
+                        if (Convert.ToInt32(rdr["30DayRet"]) == 1)
+                        {
+                            cb30Ret.Checked = true;
+                        }
+                        if (Convert.ToInt32(rdr["COD"]) == 1)
+                        {
+                            cbCOD.Checked = true;
+                        }
+                    }
+
+        }
+    }
+
+    
+
 
     private void BindArtistsRptr()
     {
@@ -48,7 +104,9 @@ public partial class AdminAddProduct : System.Web.UI.Page
                 ddlArtist.DataTextField = "ArtistName";
                 ddlArtist.DataValueField = "ArtistID";
                 ddlArtist.DataBind();
-                ddlArtist.Items.Insert(0, new ListItem("-Select-", "0"));
+               // ddlArtist.SelectedValue = artID.ToString();
+                ddlArtist.Items.FindByValue(artID.ToString()).Selected = true;
+                //ddlArtist.Items.Insert(0, new ListItem("-Select-", "0"));
             }
         }
 
@@ -70,7 +128,9 @@ public partial class AdminAddProduct : System.Web.UI.Page
                 ddlCategory.DataTextField = "CategoryName";
                 ddlCategory.DataValueField = "CategoryID";
                 ddlCategory.DataBind();
-                ddlCategory.Items.Insert(0, new ListItem("-Select-", "0"));
+                ddlCategory.Items.FindByValue(catID.ToString()).Selected = true;
+                //ddlArtist.SelectedValue = catID.ToString();
+                //ddlCategory.Items.Insert(0, new ListItem("-Select-", "0"));
                 ddlSubCategory.Enabled = true;
             }
         }
@@ -101,19 +161,23 @@ public partial class AdminAddProduct : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        if (checkProduct(txtPName.Text))
-        {
-            ErrorMessage.ForeColor = Color.Red;
-            ErrorMessage.Text = "This Product already exists";
-        }
+        //if (checkProduct(txtPName.Text))
+        //{
+        //    ErrorMessage.ForeColor = Color.Red;
+        //    ErrorMessage.Text = "This Product already exists";
 
 
-        else
-        {
+        //}
+
+
+        //else
+        //{
+            int PID = Convert.ToInt32(Request.QueryString["PID"]);
             using (SqlConnection con = new SqlConnection(CS))
             {
-                SqlCommand cmd = new SqlCommand("procInsertProducts", con);
+                SqlCommand cmd = new SqlCommand("procUpdateProducts", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProductName", PID);
                 cmd.Parameters.AddWithValue("@ProductName", txtPName.Text);
                 cmd.Parameters.AddWithValue("@Price", txtSelPrice.Text);
                 cmd.Parameters.AddWithValue("@CategoryID", ddlCategory.SelectedItem.Value);
@@ -181,17 +245,18 @@ public partial class AdminAddProduct : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@Image", bytes);
 
                 }
+
                 con.Open();
-                int k = cmd.ExecuteNonQuery();
-                if (k != 0)
-                {
-                    Message.Text = "Record Inserted Succesfully into the Database";
-                    Message.ForeColor = System.Drawing.Color.CornflowerBlue;
-                }
-                else
-                {
-                    Message.Text = "Record not added";
-                }
+                //int k = cmd.ExecuteNonQuery();
+                //if (k != 0)
+                //{
+                //    Message.Text = "Record Inserted Succesfully into the Database";
+                //    Message.ForeColor = System.Drawing.Color.CornflowerBlue;
+                //}
+                //else
+                //{
+                //    Message.Text = "Record not added";
+                //}
 
                 //Int64 ProductID = Convert.ToInt64(cmd.ExecuteScalar());
                 txtPName.Text = string.Empty;
@@ -201,14 +266,14 @@ public partial class AdminAddProduct : System.Web.UI.Page
                 txtSize.Text = string.Empty;
                 txtDesc.Text = string.Empty;
                 ddlCategory.ClearSelection();
-                ddlCategory.Items.FindByValue("0").Selected = true;
+                //ddlCategory.Items.FindByValue("0").Selected = true;
                 ddlSubCategory.ClearSelection();
-                ddlSubCategory.Items.FindByValue("0").Selected = true;
+                //ddlSubCategory.Items.FindByValue("0").Selected = true;
                 ddlArtist.ClearSelection();
-                ddlArtist.Items.FindByValue("0").Selected = true;
+                //ddlArtist.Items.FindByValue("0").Selected = true;
             }
 
-        }
+        //}
 
     }
 
@@ -231,17 +296,3 @@ public partial class AdminAddProduct : System.Web.UI.Page
         return retval;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

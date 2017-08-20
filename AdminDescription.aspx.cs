@@ -23,10 +23,23 @@ public partial class AdminDescription : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("~/ImageDisplay.aspx");
+            Response.Redirect("~/AdminHome.aspx");
         }
     }
 
+   protected void DeleteProduct(object sender, EventArgs e)
+   {
+       Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
+       access.AddAndDelInDatabase("delete from Products where ProductID='" + ProductID.ToString() + "'");
+       Response.Redirect("~/AdminHome.aspx");
+   }
+
+   protected void EditProduct(object sender, EventArgs e)
+   {
+       Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
+       
+       Response.Redirect("~/AdminEditProduct.aspx?PID="+ProductID+"");
+   }
 
     private void BindProductImages()
     {
@@ -39,11 +52,6 @@ public partial class AdminDescription : System.Web.UI.Page
         rptrImages.DataBind();
 
     }
-
-
-
-
-
 
     private void BindProductDetails()
     {

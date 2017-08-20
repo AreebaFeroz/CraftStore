@@ -64,8 +64,10 @@
                                                 <div class="row">
                                                   <div class="col-xs-6 col-sm-6">
                                                     <div>
-                                                        <asp:Button ID="EditProduct" runat="server" Text="Edit This Product" class="btn btn-primary btn-lg" style="padding-right: 12px;padding-left: 12px;"/>
-                                                    </div>
+                                                        <asp:LinkButton ID="EditButton" OnClick="EditProduct" runat="server" Text="Edit This Product" class="btn btn-primary" style="padding-right: 12px;padding-left: 12px; display:inline; float:left;"/>
+                                                        <asp:LinkButton ID ="button_delete" OnClick="DeleteProduct" OnClientClick="return confirm('Are you sure to delete?');" runat="server" Text="" class="btn btn-primary" style=" display:inline; float:left; margin-left:12px;"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                         </div>
+                                                      
                                                   </div>
                                                      
                                                 </div>

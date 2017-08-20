@@ -104,12 +104,11 @@
                            <p style="color:black;"><%# Eval("Description") %><div style="color:black ; font-size:1px;"><%# Eval("ProductID") %></div></p>
                               
                            <p>
-                             <%-- <a href="AdminDescription.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-primary" role = "button">
-                                 <i class="fa fa-shopping-cart"> Update P</i>
-                              </a>--%> 
-                              <a href="AdminDescription.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-default" role = "button">
+                             <a href="AdminDescription.aspx?ProductID=<%# Eval("ProductID") %>" class = "btn btn-default" role = "button">
                                 View Details
                               </a>
+                               <asp:LinkButton CommandArgument='<%# Eval("ProductID") %>'  OnCommand="DeleteProduct" ID ="button_delete" OnClientClick="return confirm('Are you sure to delete?');" runat="server" Text="" class="btn btn-default" style=" display:inline; float:left;"><i class="fa fa-trash"></i></asp:LinkButton>
+                              </a> 
                            </p>
                                     
                         </div>

@@ -17,7 +17,7 @@ public partial class AdminLogin : System.Web.UI.Page
         if (passwordAdmin.Text == "Admin123")
         {
             Session["admin"] = "admin";
-            Response.Redirect("~/AdminAddProduct.aspx");
+            Response.Redirect("~/AdminHome.aspx");
         }
         else
         {
