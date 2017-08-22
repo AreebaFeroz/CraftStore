@@ -30,7 +30,7 @@ public partial class AdminEditProduct : System.Web.UI.Page
                     BindArtistsRptr();
                     BindCategoryRptr();
                     BindSubCatRptr();
-                    //ddlSubCategory.Enabled = false;
+                    
                     lbl_ID.Text = PID.ToString();
                 }
                 else 

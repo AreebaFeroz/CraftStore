@@ -15,12 +15,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     public void BindCartNumber()
     {
-        if (Request.Cookies["OrderID"] != null)
+        if (Session["user"] != null)
         {
-            string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
-            string[] ProductArray = CookiePID.Split(',');
-            int ProductCount = ProductArray.Length;
-            pCount.InnerText = ProductCount.ToString();
+            if (Request.Cookies["OrderID"] != null)
+            {
+                string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
+                string[] ProductArray = CookiePID.Split(',');
+                int ProductCount = ProductArray.Length;
+                pCount.InnerText = ProductCount.ToString();
+            }
+            else
+            {
+                pCount.InnerText = 0.ToString();
+            }
         }
         else
         {

@@ -80,8 +80,8 @@ public partial class Cart : System.Web.UI.Page
                         }
                     }
                     
-                    CartTotal += Convert.ToInt64(dtBrands.Rows[i]["Price"]);
-                    Discount = (CartTotal * 10) / 100;
+                  CartTotal += Convert.ToInt64(dtBrands.Rows[i]["Price"]);
+                   Discount = (CartTotal * 10) / 100;
 
                 }
 
