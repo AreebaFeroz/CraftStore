@@ -45,9 +45,15 @@ public partial class AdminAddCategory : System.Web.UI.Page
         if (checkCat(CategoryName.Text))
         {
             ErrorMessage.ForeColor = Color.Red;
-            ErrorMessage.Text = "This Category already exists";
-
-
+            ErrorMessage.Text = "This Category changed";
+           
+            //string pots="Pottery";
+            //int ID=5;
+           // access.AddAndDelInDatabase("update Category SET CategoryName='" + pots.ToString() + "'where CategoryID='"+ID.ToString() + "'");
+           
+            
+            // String SQL_UPDATE = "UPDATE Category(CategoryName) SET CategogryName='" + pots + "'WHERE CategoryID='" + ID.ToString() + "'";
+          
         }
         else
         {
