@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Craft Store</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,11 +61,13 @@
                 </ul>
                
                 <ul class="nav navbar-nav navbar-right">
-                              
+                     
+                    <% if (Session["user"] != null) { %>         
                      <li><a id="btnCart" href="Cart.aspx">
 					<i class="fa fa-shopping-cart"></i>
 					Cart<span class="badge" id="pCount" runat="server"></span></a>
 				</li>
+                     <%} %>
 
                      <% if (Session["user"] == null) { %>
                     <li><a id="loginButton" href="Login.aspx">
@@ -99,7 +101,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Reserve Table </h4>
+                <h4 class="modal-title">Contact Us </h4>
               </div>
               <div class="modal-body">
                 <!-- Original Reservation Form implementation  -->
@@ -188,7 +190,7 @@
                      <h5>Location</h5>
                                
 
-                        <p>Contact us and we'll get back to you within 24 hours.</p>
+                        <p>Contact us and we'll get back to you <br />within 24 hours.</p>
                         <p><span class="glyphicon glyphicon-map-marker"></span> Karachi, Pakistan.</p>
                         <p><span class="glyphicon glyphicon-phone"></span> +021 1515151515</p>
                         <p><span class="glyphicon glyphicon-envelope"></span> craftstore@abc.com</p> 
@@ -200,11 +202,11 @@
                 
                             
 
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-center">
                                 
                    <div class="social-networks">
                                    
-                      <h3>Connect Us on Facebook! </h3>
+                      <h3 >Connect Us on Facebook! </h3>
                       <a href="https://www.facebook.com/CraftStore-1459531557448527/" class="facebook"><i class="fa fa-facebook"></i></a>
                                    
                                

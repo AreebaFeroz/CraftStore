@@ -48,10 +48,25 @@ public partial class Login : System.Web.UI.Page
                     Response.Cookies["PWD"].Expires = DateTime.Now.AddDays(-1);
                 }
                 Session["user"] = username.Text;
-                Response.Redirect("~/Home.aspx");
+
+                if (Request.QueryString["rurl"] != null)
+                {
+                    if (Request.QueryString["rurl"] == "desc")
+                    {
+                        Response.Redirect("~/Description.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Home.aspx");
+                }
+
+
+
+
                 Session.RemoveAll();
             }
-            else 
+            else
             {
                 lblError.Text = "Invalid Username or password";
             }

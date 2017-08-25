@@ -73,9 +73,15 @@
                         </a></td>
                                                                               
                         <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                       
+                        <a href="Checkout.aspx?ProductID=<%# Eval("OrderID") %>" class = "btn btn-primary" role = "button">
+                                 <i class="fa fa-shopping-cart"> Checkout</i>
+                              </a>
+                        
+                        </td>
+ 
+
+
                     </tr>
                 </tfoot>
             </table>

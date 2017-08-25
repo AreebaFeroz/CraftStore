@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 public partial class Description : System.Web.UI.Page
 {
-     Accessible access = new Accessible();
+    Accessible access = new Accessible();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.QueryString["ProductID"] != null)
@@ -32,13 +32,17 @@ public partial class Description : System.Web.UI.Page
     {
         Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
 
-         SqlCommand cmd = new SqlCommand("select * from Products where ProductID=" + ProductID + "");
-         DataTable images = new DataTable();
-         images = access.SelectFromDatabase(cmd);
-         rptrImages.DataSource = images;
-         rptrImages.DataBind();
-            
+        SqlCommand cmd = new SqlCommand("select * from Products where ProductID=" + ProductID + "");
+        DataTable images = new DataTable();
+        images = access.SelectFromDatabase(cmd);
+        rptrImages.DataSource = images;
+        rptrImages.DataBind();
+
     }
+
+
+
+
 
 
     private void BindProductDetails()
@@ -50,7 +54,7 @@ public partial class Description : System.Web.UI.Page
         DataTable dtProducts = new DataTable();
         dtProducts = access.SelectFromDatabase(cmd);
         rptrProductDetails.DataSource = dtProducts;
-        rptrProductDetails.DataBind();    
+        rptrProductDetails.DataBind();
     }
 
 
@@ -62,6 +66,9 @@ public partial class Description : System.Web.UI.Page
 
         if (Session["user"] != null)
         {
+
+
+
             if (Request.Cookies["OrderID"] != null)
             {
                 string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
@@ -84,7 +91,7 @@ public partial class Description : System.Web.UI.Page
 
         else
         {
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx?rurl=desc");
         }
     }
 
