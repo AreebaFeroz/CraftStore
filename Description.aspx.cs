@@ -67,8 +67,6 @@ public partial class Description : System.Web.UI.Page
         if (Session["user"] != null)
         {
 
-
-
             if (Request.Cookies["OrderID"] != null)
             {
                 string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];

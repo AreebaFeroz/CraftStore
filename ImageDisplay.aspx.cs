@@ -7,21 +7,39 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 
 public partial class ImageDisplay : System.Web.UI.Page
 {
     Accessible access = new Accessible();
     DataTable images = new DataTable();
+    private Color color;
+    private int b;
     protected void Page_Load(object sender, EventArgs e)
     {
         if(!this.IsPostBack)
         {
             AllImage();
+            if (Request.QueryString["catID"] != null)
+            {
+                BindCatFromHome();
+            }
         }
-            CategoryRptr();   
+            CategoryRptr();
+           
     }
- 
-    //}
+
+    protected void BindCatFromHome()
+    {
+
+        int category = Convert.ToInt32(Request.QueryString["catID"]);
+        SqlCommand cmd = new SqlCommand("Select * from Products WHERE CategoryID='" + category + "'");
+        images = access.SelectFromDatabase(cmd);
+        rptrImages.DataSource = images;
+        rptrImages.DataBind();
+    }
+
+
 
     protected void AllImage()
     {
@@ -75,6 +93,52 @@ public partial class ImageDisplay : System.Web.UI.Page
             dtSubCat = access.SelectFromDatabase(cmd);
             rptrSubCategories.DataSource = dtSubCat;
             rptrSubCategories.DataBind();
+           // ((HtmlControl)e.Item.FindControl("SomeControl")).Attributes.Add("class", "cssStyle");
+     
         }
-    }    
+    }
+
+    private static readonly Random random = new Random();
+    private static readonly object syncLock = new object();
+    public static int RandomNumber(int min, int max)
+    {
+        lock (syncLock)
+        { // synchronize
+            for (int i = 0; i < 1000000; i++)
+            {
+            
+            }
+            return random.Next(min, max);
+        }
+    }
+    protected void GetRandColor(object sender, EventArgs e)
+    {
+        b = RandomNumber(1, 7);
+        switch (b)
+        {
+            case 1:
+                    color = Color.Red; break;
+            case 2:
+                    color = Color.Blue; break;
+            case 3:
+                    color = Color.Green; break;
+            case 4:
+                    color = Color.Yellow; break;
+           case 5:
+                color = Color.Orange; break;
+           case 6:
+               color = Color.Purple; break;
+        }
+        for (int k = 0; k < 100; k++)
+        { 
+        }
+
+        LinkButton btn = (LinkButton)sender;
+         btn.BackColor = color;
+       
+    }
+
+
+
+
 }

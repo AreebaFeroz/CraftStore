@@ -27,7 +27,7 @@
         display: block;
         }
          .dropdown-menu {
-             background-color:red;
+            background-color:coral;
              color:white;
          }
 
@@ -50,12 +50,11 @@
                               <ItemTemplate>   
                                      <li class="dropdown">
                                          <div class="divider">
-                                             <asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("CategoryID") %>'  OnClick="Cat_Click"  CssClass="btn btn-lg btn-block dropdown-toggle" style="background-color:red; color:white;"><%# Eval("CategoryName") %></asp:LinkButton>
+                                             <asp:LinkButton NavigateUrl="#" runat="server" OnLoad="GetRandColor" CommandArgument='<%# Eval("CategoryID") %>'  OnClick="Cat_Click"  CssClass="btn btn-lg btn-block dropdown-toggle" style="color:white;"><%# Eval("CategoryName") %></asp:LinkButton>
                                              <ul class="dropdown-menu">
                                                  <asp:Repeater ID="rptrSubCat" runat="server">
                                                           <ItemTemplate> 
-                                                            <li><asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("SubCategoryID") %>' OnClick="SubCat_Click"><%# Eval("SubCategoryName") %></asp:LinkButton></li>
-                                                             <%-- <asp:HiddenField ID="hfSubCategoryID" runat="server" Value='<%# Eval("SubCategoryID") %>' />--%>
+                                                            <li><asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("SubCategoryID") %>' ><%# Eval("SubCategoryName") %></asp:LinkButton></li>
                                                         </ItemTemplate>
                                                 </asp:Repeater>
                                                           </ul>   

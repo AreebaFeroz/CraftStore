@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style>
+         .divider {
+         margin: 5px;
+
+         }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -114,13 +121,30 @@
           <div class="row">
            <div class="col-xs-12">
             <div class="btn-group">
-                <a href="" class="btn btn-lg " style="background-color:red; color:white;">Paintings</a>
+                <ul class="nav nav-tabs">
+                       <asp:Repeater ID="rptrCat" runat="server">
+                              <ItemTemplate>   
+                                   <li>
+                                         <div class="divider">
+                                             <asp:LinkButton ID="LinkButton1" NavigateUrl="#" runat="server" OnClick="Cat_Click" OnLoad="GetRandColor" CommandArgument='<%# Eval("CategoryID") %>'  CssClass="btn btn-lg btn-block dropdown-toggle" style="color:white;"><%# Eval("CategoryName") %></asp:LinkButton> 
+                                         </div>
+                                 </li>
+                                  <asp:HiddenField ID="hfCategoryID" runat="server" Value='<%# Eval("CategoryID") %>' />
+                              </ItemTemplate>
+                          </asp:Repeater>
+                        
+                    </ul>
+
+
+
+
+               <%-- <a href="" class="btn btn-lg " style="background-color:red; color:white;">Paintings</a>
                 <a href="" class="btn btn-lg " style="background-color:orange; color:white;">Handicrafts</a>
                 <a href="" class="btn btn-lg " style="background-color:yellow; color:white;">Graphics</a>
                 <a href="" class="btn btn-lg " style="background-color:green; color:white;">Jewellery</a>
                 <a href="" class="btn btn-lg " style="background-color:blue; color:white;">Interios</a>
                 <a href="" class="btn btn-lg " style="background-color:purple; color:white;">Potraits</a>
-                <a href="" class="btn btn-lg " style="background-color:black; color:white;">Sketches</a>
+                <a href="" class="btn btn-lg " style="background-color:black; color:white;">Sketches</a>--%>
             </div>
             </div>
            </div>
