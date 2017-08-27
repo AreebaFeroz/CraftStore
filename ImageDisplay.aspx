@@ -21,19 +21,16 @@
          }
          .divider {
          margin: 5px;
-
-         }
+          }
        .dropdown:hover .dropdown-menu {
-        display: block;
+        display: block; 
+        background-color:#e8202a;
+        border-radius: 10px 10px 10px 10px;
         }
-         .dropdown-menu {
-            background-color:coral;
-             color:white;
-         }
-
-       .dropdown-menu:hover {
-        color:black;
+        .dropdown-menu > li > a {
+            color:white;
         }
+  
  </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -50,11 +47,11 @@
                               <ItemTemplate>   
                                      <li class="dropdown">
                                          <div class="divider">
-                                             <asp:LinkButton NavigateUrl="#" runat="server" OnLoad="GetRandColor" CommandArgument='<%# Eval("CategoryID") %>'  OnClick="Cat_Click"  CssClass="btn btn-lg btn-block dropdown-toggle" style="color:white;"><%# Eval("CategoryName") %></asp:LinkButton>
+                                             <asp:LinkButton NavigateUrl="#" runat="server" OnLoad="GetRandColor" CommandArgument='<%# Eval("CategoryID") %>'  OnClick="Cat_Click"  CssClass="btn btn-lg btn-block dropdown-toggle" style="background-color:red;  color:white;"><%# Eval("CategoryName") %></asp:LinkButton>
                                              <ul class="dropdown-menu">
                                                  <asp:Repeater ID="rptrSubCat" runat="server">
                                                           <ItemTemplate> 
-                                                            <li><asp:LinkButton NavigateUrl="#" runat="server" CommandArgument='<%# Eval("SubCategoryID") %>' ><%# Eval("SubCategoryName") %></asp:LinkButton></li>
+                                                            <li><asp:LinkButton NavigateUrl="#"  runat="server" CssClass="linkbutton" CommandArgument='<%# Eval("SubCategoryID") %>' Text='<%# Eval("SubCategoryName") %>' OnClick="SubCat_Click"></asp:LinkButton></li>
                                                         </ItemTemplate>
                                                 </asp:Repeater>
                                                           </ul>   

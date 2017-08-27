@@ -93,13 +93,10 @@
                             occasion but what about sending someone a card for no
                              reason other than to make them smile?
                         </p>
-                        
-         
 
-
-                     <iframe width="320" height="345" src="https://www.youtube.com/embed/VYYZzZ2rE6o">
+                     <iframe width="320" height="345" style="margin-bottom:20px; margin-right:5px; border:5px;" src="https://www.youtube.com/embed/VYYZzZ2rE6o">
                       </iframe>
-                      <iframe width="320" height="345" src="https://www.youtube.com/embed/gssiA9tBbD0">
+                      <iframe width="320" height="345" style="margin-bottom:20px; border:5px;" src="https://www.youtube.com/embed/gssiA9tBbD0">
                       </iframe>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-5 text-center">

@@ -41,7 +41,7 @@
 
 
                         </td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>1</strong></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong><%#Eval("ProductQnty") %></strong></td>
                            <td></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong><%#Eval("Price") %></strong></td>
                        <td></td>
@@ -53,6 +53,24 @@
                     </tr>
                     </ItemTemplate>
                   </asp:Repeater>
+                    <tr>
+                        <td class="col-sm-8 col-md-6" colspan="3">
+                         <div class="media">
+                            
+                            <div class="media-body">
+                                  
+                                  <h5 class="media-heading">Shipping Address</h5>
+                                <div class="text-center">
+                                    <asp:TextBox runat="server" ID="ShippingAddress" TextMode="MultiLine" Rows="7" Columns="100" />
+                                    </div>
+                            <asp:Button ID="AddShippingAddress" runat="server" Text="Confirm Shipping Address" CssClass="btn btn-primary" OnClick="add_ShippingAddress" />
+                                 <asp:Label ID="EmptyAddress" runat="server" Text=""></asp:Label> </div>
+                         </div>
+                        </td>
+
+
+                    </tr>
+
                 </tbody>
                 <tfoot runat="server" id="divPriceDetails">
                     <tr>
@@ -74,9 +92,9 @@
                                                                               
                         <td>
                        
-                        <a href="Checkout.aspx?ProductID=<%# Eval("OrderID") %>" class = "btn btn-primary" role = "button">
+                        <asp:LinkButton CssClass = "btn btn-primary" runat="server" ID="CheckOutButton" Enabled="false">
                                  <i class="fa fa-shopping-cart"> Checkout</i>
-                              </a>
+                              </asp:LinkButton>
                         
                         </td>
  

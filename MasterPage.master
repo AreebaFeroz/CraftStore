@@ -58,6 +58,8 @@
                     <li><a href="About.aspx"><span class="glyphicon glyphicon-info-sign"
 				 aria-hidden="true"></span> About</a></li>
                     <li><a href="ImageDisplay.aspx"><i class="fa fa-image"></i> Products</a></li>
+                    <li><a href="Contact.aspx"><span class="glyphicon glyphicon-envelope"
+				 aria-hidden="true"></span> Contact</a></li>
                 </ul>
                
                 <ul class="nav navbar-nav navbar-right">
@@ -93,66 +95,8 @@
 
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
       </asp:ContentPlaceHolder>
-          </form>
-        <!-- RESERVATION modal feature implementation -->
-        <div id="reserveModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content -->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Contact Us </h4>
-              </div>
-              <div class="modal-body">
-                <!-- Original Reservation Form implementation  -->
-                 <form class="form-horizontal" role="form" id="reservationForm">
-                            <div class="form-group">
-                                <label for="user-name" class="col-lg-2 control-label">Name</label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="user-name" placeholder="Enter your name" />
-                                </div>
-                            </div>
-                            <!--end form group-->
-
-
-                            <div class="form-group">
-                                <label for="user-email" class="col-lg-2 control-label">Email</label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="user-email" placeholder="Enter your email" />
-                                </div>
-                            </div>
-                            <!--end form group-->
-
-
-
-                            <div class="form-group">
-                                <label for="user-message" class="col-lg-2 control-label">Any message</label>
-                                <div class="col-lg-10">
-                                    <textarea name="user-message" id="user-message" class="form-control" cols="20" rows="10"
-                                        placeholder="Enter your message"></textarea>
-                                </div>
-                            </div>
-                            <!--end form group-->
-
-
-
-                            <div class="form-group">
-                                <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>        
-                                           
-                 </form>
-              </div> <!-- /End modal Body -->
-            </div> <!--/End modal Content -->
-          </div> <!-- /End modal Dialog -->
-        </div> <!-- /End RESERVE modal -->
-
-
-
-
-
-
+         </form>
+       
     <!--footer-->
 
 
@@ -213,7 +157,7 @@
                    </div>
                                 
                    
-                   <a data-toggle="modal" data-target="#reserveModal" id="reserveButton" type="button" class="btn" 
+                   <a href="Contact.aspx" id="contactButton"  class="btn" 
 						style="white-space:normal !important;">Contact us</a>
                             
                 </div>

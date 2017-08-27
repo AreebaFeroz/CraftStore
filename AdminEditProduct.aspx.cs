@@ -239,7 +239,7 @@ public partial class AdminEditProduct : System.Web.UI.Page
 
             //    }
 
-         access.AddAndDelInDatabase("update Products SET ProductName='" + ProductName + "',Price='" + Price+ "',CategoryID='" + CategoryID+ "',SubCategoryID='" + SubCategoryID+ "',InStock='" + InStock+ "',ImageType='"+ImageType.ToString()+"',Colour='" + Colour.ToString() + "',Size='" + Size.ToString() + "',ArtistID='" + ArtistID+ "',Description='" + Description + "',FreeDelivery='" + FreeDelivery+ "',[30DayRet]='" + Ret+ "',COD='" + COD + "'where ProductID='" + PID.ToString() + "'");
+         access.AddAndDelInDatabase("update Products SET ProductName='" + ProductName + "',Price='" + Price+ "',CategoryID='" + CategoryID+ "',SubCategoryID='" + SubCategoryID+ "',InStock='" + InStock+"',Colour='" + Colour.ToString() + "',Size='" + Size.ToString() + "',ArtistID='" + ArtistID+ "',Description='" + Description + "',FreeDelivery='" + FreeDelivery+ "',[30DayRet]='" + Ret+ "',COD='" + COD + "'where ProductID='" + PID.ToString() + "'");
            
 
         //String SQL_UPDATE = "Update Products SET  [ProductName]=@ProductName, [Price]=@Price, [CategoryID]=@CategoryID, [SubCategoryID]=@SubCategoryID, [InStock]=@InStock, [Image]=@Image, [ImageType]=@ImageType, [Colour]=@Colour, [Size]=@Size, [ArtistID]=@ArtistID, [Description]=@Description, [FreeDelivery]=@FreeDelivery, [30DayRet]=@30DayRet, [COD]=@COD WHERE [ProductID]=@ProductID";

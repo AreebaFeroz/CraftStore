@@ -23,7 +23,7 @@
                    </div>           
     </div>
     <!-- END jumbotron-->
-<section>
+<section style="margin-bottom:150px">
                 <div class="container">
                        <div class = "row">
                               <asp:Repeater ID="rptrImages" runat="server">
@@ -43,9 +43,9 @@
                                          <div class="container-fluid">
                                                 <div class="row">
                                                   <div class="col-xs-12 col-sm-12">
-                                                     <asp:Repeater ID="rptrProductDetails"  runat="server">
+                                                     <asp:Repeater ID="rptrProductDetails"  runat="server" OnItemDataBound="rptrProductDetails_ItemDataBound">
                                                      <ItemTemplate>
-                                                    <div class="panel panel-default" style="width: 347px;height: 340px;">
+                                                    <div class="panel panel-default">
                                                       <div class="panel-heading text-center" >
                                                         <h3><%#Eval("ProductName") %></h3>
                                                       </div>
@@ -54,11 +54,16 @@
                                                         <p><strong>Sub-Category</strong>  <%#Eval("SubCategoryName") %></p>
                                                         <p><strong>Artist:</strong>  <%#Eval("ArtistName") %></p>
                                                         <p><strong>Price:</strong> <%#Eval("Price") %></p>
-                                                        <p><strong>Quantity:</strong> <%#Eval("InStock") %></p>
-                                                        <p><strong>Description:</strong> <%#Eval("Description") %></p>
+                                                          <p><strong>Available</strong> <%#Eval("InStock") %></p>
+                                                        
+                                                        <p><strong>Quantity:</strong><asp:TextBox runat="server" ID="productQnty" CssClass="form-control" ForeColor="Black"/>
+                                                         <asp:RegularExpressionValidator ID="SchkValidPQnty" ValidationGroup="Group1" runat="server" ControlToValidate="productQnty" CssClass="text-danger" ErrorMessage="Please enter a valid Quantity" Display="Dynamic"  ValidationExpression="^\d+$"></asp:RegularExpressionValidator> 
+                                                         </p> 
+                                                          <p><strong>Description:</strong> <%#Eval("Description") %></p>
                                                         <p><%# ((int)Eval("FreeDelivery")==1)?"Free Delivery":"" %> <%# ((int)Eval("30DayRet")==1)?"30 Days Returns":"" %> <p><%# ((int)Eval("COD")==1)?"Cash on Delivery":"" %></p>
                                                              
                                                       </div>
+                                                         <asp:HiddenField ID="hfAvailable" runat="server" Value='<%# Eval("Instock") %>' />
                                                         </ItemTemplate>
                                                        </asp:Repeater>
                                                       
@@ -70,7 +75,7 @@
                                                 <div class="row">
                                                   <div class="col-xs-6 col-sm-6">
                                                     <div>
-                                                        <asp:Button ID="btnAddToCart"  OnClick="btnAddToCart_Click" runat="server" Text="ADD TO CART" class="btn btn-primary btn-lg" style="padding-right: 12px;padding-left: 12px;"/>
+                                                        <asp:Button ID="btnAddToCart"  OnClick="AddCart" runat="server" Text="ADD TO CART" class="btn btn-primary btn-lg" style="padding-right: 12px;padding-left: 12px;"/>
                                                     </div>
                                                   </div>
                                                   <div class="col-xs-6 col-sm-6">
@@ -78,14 +83,15 @@
                                                         
                                                   </div>   
                                                 </div>
-
+                                                 <div class="row">
+                                                     <asp:Label runat="server" ID ="lblErr"></asp:Label>  
+                                                 </div>
 
                                           </div>
                                           
 
                                 </div>
 
-                          </div>
                           </div>
                           </section>
                           <br><br><br><br>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 
 public partial class Description : System.Web.UI.Page
 {
@@ -19,7 +20,9 @@ public partial class Description : System.Web.UI.Page
             {
                 BindProductImages();
                 BindProductDetails();
+               
             }
+           
         }
         else
         {
@@ -41,6 +44,13 @@ public partial class Description : System.Web.UI.Page
     }
 
 
+    protected void rptrProductDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {   
+
+        /*TEXT BOX DISABLED CODE */
+
+    }
+
 
 
 
@@ -55,43 +65,86 @@ public partial class Description : System.Web.UI.Page
         dtProducts = access.SelectFromDatabase(cmd);
         rptrProductDetails.DataSource = dtProducts;
         rptrProductDetails.DataBind();
+
+      //  available = dtProducts.Rows[0].Field<int>(5);
+
     }
 
 
-
-    protected void btnAddToCart_Click(object sender, EventArgs e)
+    private void AddToCart(string quantity)
     {
         Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
 
 
         if (Session["user"] != null)
         {
-
             if (Request.Cookies["OrderID"] != null)
             {
-                string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
+                string CookiePID = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
                 CookiePID = CookiePID + "," + ProductID;
 
                 HttpCookie Order = new HttpCookie("OrderID");
-                Order.Values["OrderID"] = CookiePID;
+                Order.Values["ProductID"] = CookiePID;
+
+                string CookieQnty = Request.Cookies["OrderID"]["Quantity"].Split('=')[0];
+                CookieQnty = CookieQnty + "," + quantity;
+                Order.Values["Quantity"] = CookieQnty;
+
                 Order.Expires = DateTime.Now.AddDays(30);
                 Response.Cookies.Add(Order);
             }
             else
             {
                 HttpCookie Order = new HttpCookie("OrderID");
-                Order.Values["OrderID"] = ProductID.ToString();
+                Order.Values["ProductID"] = ProductID.ToString();
+                Order.Values["Quantity"] = quantity;
                 Order.Expires = DateTime.Now.AddDays(30);
                 Response.Cookies.Add(Order);
             }
-            Response.Redirect("~/Description.aspx?ProductID=" + ProductID);
+             Response.Redirect("~/Description.aspx?ProductID=" + ProductID);
         }
-
         else
         {
             Response.Redirect("~/Login.aspx?rurl=desc");
         }
     }
+
+
+
+    protected void AddCart(object sender, System.EventArgs e)
+    {
+        string qnty = string.Empty;
+        int avail = 0;
+        foreach (RepeaterItem item in rptrProductDetails.Items)
+        {
+            if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+            {
+                TextBox txt = (TextBox)item.FindControl("productQnty") as TextBox;
+                qnty = txt.Text;
+                HiddenField available = item.FindControl("hfAvailable") as HiddenField;
+                avail = Convert.ToInt32(available.Value);
+            }
+        }
+
+            if (qnty.Equals("0") || qnty == string.Empty)
+            {
+                lblErr.Text = "Please add quantity for your product";
+                lblErr.ForeColor = Color.Red;
+            }
+            else if (Convert.ToInt32(qnty) > Convert.ToInt32(avail))
+            {
+                lblErr.Text = "Please enter quantity within available range Your quantity is:"+Convert.ToInt32(qnty)+"available is:"+Convert.ToInt32(avail);
+                lblErr.ForeColor = Color.Red;
+            }
+            else
+            {
+                AddToCart(qnty);
+
+            }
+        
+    }
+
+
 
 
 }

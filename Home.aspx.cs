@@ -59,9 +59,6 @@ public partial class Home : System.Web.UI.Page
 
         if (Session["user"] != null)
         {
-
-
-
             if (Request.Cookies["OrderID"] != null)
             {
                 string CookiePID = Request.Cookies["OrderID"].Value.Split('=')[1];
