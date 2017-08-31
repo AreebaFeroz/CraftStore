@@ -92,7 +92,7 @@
                                                                               
                         <td>
                        
-                        <asp:LinkButton CssClass = "btn btn-primary" runat="server" ID="CheckOutButton" Enabled="false">
+                        <asp:LinkButton CssClass = "btn btn-primary" runat="server" ID="CheckOutButton" Enabled="false" OnClick="checkOut_Click">
                                  <i class="fa fa-shopping-cart"> Checkout</i>
                               </asp:LinkButton>
                         

@@ -66,6 +66,30 @@ public partial class Description : System.Web.UI.Page
         rptrProductDetails.DataSource = dtProducts;
         rptrProductDetails.DataBind();
 
+
+        /* textbox disabled */
+        
+
+
+            DataTable sizeDet = new DataTable();
+            SqlCommand cmd2 = new SqlCommand("SELECT InStock  FROM Products WHERE ProductID = @ProductID");
+            cmd2.Parameters.AddWithValue("@ProductID", ProductID);
+            sizeDet = access.SelectFromDatabase(cmd2);
+           
+            if (Convert.ToString(sizeDet.Rows[0]["InStock"]).Equals("0"))
+            {
+               // productQnty.Enabled = false;
+                btnAddToCart.Enabled = false;
+                btnAddToCart.CssClass = "btn btn-primary btn-lg disabled";
+                lblErr.Text = "Item not in stock";
+                lblErr.ForeColor = Color.Red;
+            }
+        
+
+        /* textbox disabled */
+
+
+
       //  available = dtProducts.Rows[0].Field<int>(5);
 
     }
@@ -143,6 +167,12 @@ public partial class Description : System.Web.UI.Page
             }
         
     }
+
+
+
+
+    
+
 
 
 

@@ -29,7 +29,7 @@
                               <asp:Repeater ID="rptrImages" runat="server">
                 
                                <ItemTemplate>
-                              <div class = " col-xs-12 col-sm-offset-1 col-sm-6 col-md-offset-1 col-md-6 pic-size " style="height: 400px;width:530px;">
+                              <div class = " col-xs-12 col-sm-offset-1 col-sm-5 col-md-offset-1 col-md-5 pic-size " style="height: 400px;width:530px;">
                                  <div class = "thumbnail">
                                     <asp:Image ID="Image1" runat="server" alt="image" style="border:5px solid black; height: 400px;width:530px;"  ImageUrl='<%#Accessible.GetImage(Eval("Image")) %>' />
                                  </div>
@@ -39,7 +39,7 @@
                                    </ItemTemplate>
                                   </asp:Repeater>
 
-                                 <div class = " col-xs-12 col-sm-5 col-md-5 pic-size">
+                                 <div class = " col-xs-12 col-sm-6 col-md-6 pic-size">
                                          <div class="container-fluid">
                                                 <div class="row">
                                                   <div class="col-xs-12 col-sm-12">
@@ -71,6 +71,14 @@
                                                     </div> 
                                                    </div> 
                                                 </div>
+                                                 
+
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                     <asp:Label runat="server" ID ="lblErr"></asp:Label>  
+                                                     </div>
+                                                </div>
+
 
                                                 <div class="row">
                                                   <div class="col-xs-6 col-sm-6">
@@ -83,9 +91,7 @@
                                                         
                                                   </div>   
                                                 </div>
-                                                 <div class="row">
-                                                     <asp:Label runat="server" ID ="lblErr"></asp:Label>  
-                                                 </div>
+
 
                                           </div>
                                           

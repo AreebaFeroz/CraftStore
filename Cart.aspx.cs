@@ -141,6 +141,13 @@ public partial class Cart : System.Web.UI.Page
     
     }
 
+    protected void checkOut_Click(object sender, EventArgs e)
+    {
+       
+
+
+    }
+
     protected void btnRemoveItem_Click(object sender, EventArgs e)
     {
         string CookiePID = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
@@ -182,17 +189,6 @@ public partial class Cart : System.Web.UI.Page
         Response.Redirect("~/Cart.aspx");
 
     }// end of remove 
-
-
-
-
-
-
-
-
-
-
-
 
 
 
