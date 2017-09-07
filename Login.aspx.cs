@@ -51,13 +51,14 @@ public partial class Login : System.Web.UI.Page
                 Session["userID"] = userID;
                 Session["user"] = username.Text;
 
-                if (Request.QueryString["rurl"] != null)
-                {
-                    if (Request.QueryString["rurl"] == "desc")
-                    {
-                        Response.Redirect("~/Description.aspx");
-                    }
-                }
+               
+                        if (Request.QueryString["ProductID"] != null)
+                        {
+                            Response.Redirect("~/Description.aspx?ProductID=" + Request.QueryString["ProductID"]);
+ 
+                        }
+                       
+                    
                 else
                 {
                     Response.Redirect("~/Home.aspx");

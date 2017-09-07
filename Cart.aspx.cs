@@ -10,8 +10,9 @@ using System.Web.UI.WebControls;
 
 public partial class Cart : System.Web.UI.Page
 {
-
+    public static double Total;
     Accessible access = new Accessible();
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["user"] != null)
@@ -50,8 +51,9 @@ public partial class Cart : System.Web.UI.Page
         }
         EmptyAddress.Text = "Confirm/Add Address before checkout";
     }
-    private void BindCartProducts()
+    public void BindCartProducts()
     {
+        
         if (Request.Cookies["OrderID"] != null)
         {
             string CookieData = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
@@ -71,7 +73,7 @@ public partial class Cart : System.Web.UI.Page
                 
                 DataTable det = new DataTable();
                 Int64 CartTotal = 0;
-                Int64 Total = 0;
+                //Decimal Total = 0;
                 Int64 Discount = 0;
                 for (int i = 0; i < CookieDataArray.Length; i++)
                 {
@@ -96,10 +98,10 @@ public partial class Cart : System.Web.UI.Page
 
                 spanCartTotal.InnerText = CartTotal.ToString();
                 spanDiscount.InnerText = "Rs. " + Discount.ToString();
-                Total = CartTotal - Discount;
+                Cart.Total = CartTotal - Discount;
                 spanTotal.InnerText = "Rs. " + Total.ToString();
 
-
+               
 
 
             }
@@ -143,7 +145,80 @@ public partial class Cart : System.Web.UI.Page
 
     protected void checkOut_Click(object sender, EventArgs e)
     {
-       
+        int modified;
+        String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(CS))
+        {
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO [Order](OrderAmount,CustomerID,ShippingAddress) output Inserted.OrderID Values(@amount,@custID,@addr)", con);
+
+            cmd.Parameters.AddWithValue("@amount",  Cart.Total);
+            cmd.Parameters.AddWithValue("@custID", Convert.ToInt32(Session["userID"]));
+            cmd.Parameters.AddWithValue("@addr", ShippingAddress.Text.ToString());
+
+            con.Open();
+           
+            modified = Convert.ToInt32(cmd.ExecuteScalar());
+            OrderAdded.Text = "Order added with order ID" + modified + "And total " + Total;
+
+           /* if (Request.Cookies["OrderID"] != null)
+            {
+                string CookieData = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
+                string[] CookieDataArray = CookieData.Split(',');
+
+
+                string CookieQuantity = Request.Cookies["OrderID"]["Quantity"].Split('=')[0];
+                string[] CookieQuantityArray = CookieQuantity.Split(',');
+                DataTable checkoutItems = new DataTable();
+                int fkorderID;
+                decimal DetPrice;
+                string DetProductID;
+                string Quantity;
+                if (CookieDataArray.Length > 0)
+                {
+                    for (int i = 0; i < CookieDataArray.Length; i++)
+                    {
+                         DetProductID = CookieDataArray[i].ToString().Split('-')[0];
+                        
+                        SqlCommand cmd1 = new SqlCommand("Select * from Products where ProductID=" + DetProductID);
+                        
+                        checkoutItems.Merge(access.SelectFromDatabase(cmd));
+                        Quantity = CookieQuantityArray[i].ToString().Split('-')[0];
+                        DetPrice = Convert.ToInt64(checkoutItems.Rows[i]["Price"]);
+                        fkorderID = modified;
+                    }
+                }
+            }*/
+
+
+
+
+
+
+
+
+           
+                        
+                        
+                        
+                        
+                        
+                        
+             //           String SQL_Insert = "INSERT INTO [OrderDetails](DetailProductID,DetailPrice,DetailQuantity,OrderID) Values('" + ArtistName.Text + "')";
+            //if (access.AddAndDelInDatabase(SQL_Insert))
+            //{
+                
+              //  OrderAdded.Text = "Successfully Added";
+            //}
+
+            
+
+           
+           
+
+
+
+        }
 
 
     }

@@ -129,7 +129,7 @@ public partial class Description : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("~/Login.aspx?rurl=desc");
+            Response.Redirect("~/Login.aspx?ProductID=" + ProductID);
         }
     }
 
