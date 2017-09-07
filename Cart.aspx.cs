@@ -159,7 +159,18 @@ public partial class Cart : System.Web.UI.Page
             con.Open();
            
             modified = Convert.ToInt32(cmd.ExecuteScalar());
-            OrderAdded.Text = "Order added with order ID" + modified + "And total " + Total;
+
+           Response.Redirect("~/Bill.aspx?OrderID=" + modified);
+
+            
+            
+            
+            
+          
+
+
+
+
 
            /* if (Request.Cookies["OrderID"] != null)
             {

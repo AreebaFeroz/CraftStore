@@ -39,7 +39,7 @@
                                                   <div class="col-xs-12 col-sm-12">
                                                      <asp:Repeater ID="rptrProductDetails"  runat="server">
                                                      <ItemTemplate>
-                                                    <div class="panel panel-default" style="width: 347px;height: 340px;">
+                                                    <div class="panel panel-default" style="width: 347px;">
                                                       <div class="panel-heading text-center" >
                                                         <h3><%#Eval("ProductName") %></h3>
                                                       </div>

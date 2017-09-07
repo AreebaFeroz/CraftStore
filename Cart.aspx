@@ -95,8 +95,10 @@
                         <asp:LinkButton CssClass = "btn btn-primary" runat="server" ID="CheckOutButton" Enabled="false" OnClick="checkOut_Click">
                                  <i class="fa fa-shopping-cart"> Checkout</i>
                               </asp:LinkButton>
-                            <asp:Label ID="OrderAdded" runat="server" Text="Label"></asp:Label>
+
+                            
                         </td>
+                        
  
 
 
