@@ -106,9 +106,7 @@ public partial class AdminEditProduct : System.Web.UI.Page
                 ddlArtist.DataTextField = "ArtistName";
                 ddlArtist.DataValueField = "ArtistID";
                 ddlArtist.DataBind();
-               // ddlArtist.SelectedValue = artID.ToString();
                 ddlArtist.Items.FindByValue(artID.ToString()).Selected = true;
-                //ddlArtist.Items.Insert(0, new ListItem("-Select-", "0"));
             }
         }
 
@@ -131,8 +129,6 @@ public partial class AdminEditProduct : System.Web.UI.Page
                 ddlCategory.DataValueField = "CategoryID";
                 ddlCategory.DataBind();
                 ddlCategory.Items.FindByValue(catID.ToString()).Selected = true;
-                //ddlArtist.SelectedValue = catID.ToString();
-                //ddlCategory.Items.Insert(0, new ListItem("-Select-", "0"));
                 ddlSubCategory.Enabled = true;
             }
         }
@@ -170,8 +166,6 @@ public partial class AdminEditProduct : System.Web.UI.Page
                 ddlSubCategory.DataTextField = "SubCategoryName";
                 ddlSubCategory.DataValueField = "SubCategoryID";
                 ddlSubCategory.DataBind();
-                
-                //ddlSubCategory.Items.Insert(0, new ListItem("-Select-", "0"));
                 ddlSubCategory.Enabled = true;
             }
         }
@@ -193,7 +187,6 @@ public partial class AdminEditProduct : System.Web.UI.Page
         int COD;
         string ImageType;
         Byte[] Img;
-       // Byte[] image;
         
         if (cbFD.Checked == true)
                     FreeDelivery=1;
@@ -225,8 +218,7 @@ public partial class AdminEditProduct : System.Web.UI.Page
                         break;
                 }
 
-        // if (contenttype != String.Empty)
-          //      {
+  
 
                     Stream fs = fuImg01.PostedFile.InputStream;
                     BinaryReader br = new BinaryReader(fs);
@@ -237,121 +229,12 @@ public partial class AdminEditProduct : System.Web.UI.Page
                     ImageType = contenttype;
                     Img= bytes;
 
-            //    }
+            
 
          access.AddAndDelInDatabase("update Products SET ProductName='" + ProductName + "',Price='" + Price+ "',CategoryID='" + CategoryID+ "',SubCategoryID='" + SubCategoryID+ "',InStock='" + InStock+"',Colour='" + Colour.ToString() + "',Size='" + Size.ToString() + "',ArtistID='" + ArtistID+ "',Description='" + Description + "',FreeDelivery='" + FreeDelivery+ "',[30DayRet]='" + Ret+ "',COD='" + COD + "'where ProductID='" + PID.ToString() + "'");
-           
-
-        //String SQL_UPDATE = "Update Products SET  [ProductName]=@ProductName, [Price]=@Price, [CategoryID]=@CategoryID, [SubCategoryID]=@SubCategoryID, [InStock]=@InStock, [Image]=@Image, [ImageType]=@ImageType, [Colour]=@Colour, [Size]=@Size, [ArtistID]=@ArtistID, [Description]=@Description, [FreeDelivery]=@FreeDelivery, [30DayRet]=@30DayRet, [COD]=@COD WHERE [ProductID]=@ProductID";
-
-
-
-            //ErrorMessage.ForeColor = Color.Red;
-            //ErrorMessage.Text = "Editing Product ID="+PID+" Product Name="+txtPName.Text;
-            //using (SqlConnection con = new SqlConnection(CS))
-            //{
-            //    con.Open();
-            //    SqlCommand cmd = new SqlCommand("Update Products SET  [ProductName]=@ProductName, [Price]=@Price, [CategoryID]=@CategoryID, [SubCategoryID]=@SubCategoryID, [InStock]=@InStock, [Image]=@Image, [ImageType]=@ImageType, [Colour]=@Colour, [Size]=@Size, [ArtistID]=@ArtistID, [Description]=@Description, [FreeDelivery]=@FreeDelivery, [30DayRet]=@30DayRet, [COD]=@COD WHERE [ProductID]=@ProductID", con);
-            //    //cmd.CommandType = CommandType.StoredProcedure;
-            //    cmd.Parameters.AddWithValue("@ProductID", PID);
-            //    cmd.Parameters.AddWithValue("@ProductName", txtPName.Text);
-            //    cmd.Parameters.AddWithValue("@Price", txtSelPrice.Text);
-            //    cmd.Parameters.AddWithValue("@CategoryID", Convert.ToInt32(ddlCategory.SelectedItem.Value));
-            //    cmd.Parameters.AddWithValue("@SubCategoryID", Convert.ToInt32(ddlSubCategory.SelectedItem.Value));
-            //    cmd.Parameters.AddWithValue("@InStock", txtQuantity.Text);
-            //    cmd.Parameters.AddWithValue("@Colour", colour.Text);
-            //    cmd.Parameters.AddWithValue("@Size", txtSize.Text);
-            //    cmd.Parameters.AddWithValue("@ArtistID", Convert.ToInt32(ddlArtist.SelectedItem.Value));
-            //    cmd.Parameters.AddWithValue("@Description", txtDesc.Text);
-
-                //if (cbFD.Checked == true)
-                //{
-                //    cmd.Parameters.AddWithValue("@FreeDelivery", 1.ToString());
-                //}
-                //else
-                //{
-                //    cmd.Parameters.AddWithValue("@FreeDelivery", 0.ToString());
-                //}
-                //if (cb30Ret.Checked == true)
-                //{
-                //    cmd.Parameters.AddWithValue("@30DayRet", 1.ToString());
-                //}
-                //else
-                //{
-                //    cmd.Parameters.AddWithValue("@30DayRet", 0.ToString());
-                //}
-                //if (cbCOD.Checked == true)
-                //{
-                //    cmd.Parameters.AddWithValue("@COD", 1.ToString());
-                //}
-                //else
-                //{
-                //    cmd.Parameters.AddWithValue("@COD", 0.ToString());
-                //}
-
-                // Read the file and convert it to Byte Array
-
-                //string filePath = fuImg01.PostedFile.FileName;
-                //string filename = Path.GetFileName(filePath);
-                //string ext = Path.GetExtension(filename);
-                //string contenttype = String.Empty;
-                //Set the contenttype based on File Extension
-                //switch (ext)
-                //{
-                //    case ".jpg":
-                //        contenttype = "image/jpg";
-                //        break;
-                //    case ".png":
-                //        contenttype = "image/png";
-                //        break;
-                //    case ".gif":
-                //        contenttype = "image/gif";
-                //        break;
-                //}
-                //if (contenttype != String.Empty)
-                //{
-
-                //    Stream fs = fuImg01.PostedFile.InputStream;
-                //    BinaryReader br = new BinaryReader(fs);
-                //    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-
-                //    //insert the file into database
-
-                //    cmd.Parameters.AddWithValue("@ImageType", contenttype);
-                //    cmd.Parameters.AddWithValue("@Image", bytes);
-
-                //}
-
-                
 
                 Response.Redirect("~/AdminDescription.aspx?ProductID=" + PID + "");
-                //cmd.ExecuteNonQuery();
-                //if (k != 0)
-                //{
-                //    Message.Text = "Record Inserted Succesfully into the Database";
-                //    Message.ForeColor = System.Drawing.Color.CornflowerBlue;
-                //}
-                //else
-                //{
-                //    Message.Text = "Record not added";
-                //}
-
-                //Int64 ProductID = Convert.ToInt64(cmd.ExecuteScalar());
-                //txtPName.Text = string.Empty;
-                //txtSelPrice.Text = string.Empty;
-                //colour.Text = string.Empty;
-                //txtQuantity.Text = string.Empty;
-                //txtSize.Text = string.Empty;
-                //txtDesc.Text = string.Empty;
-                //ddlCategory.ClearSelection();
-                //ddlCategory.Items.FindByValue("0").Selected = true;
-              //  ddlSubCategory.ClearSelection();
-                //ddlSubCategory.Items.FindByValue("0").Selected = true;
-               // ddlArtist.ClearSelection();
-                //ddlArtist.Items.FindByValue("0").Selected = true;
-            //}
-
-        //}
+               
 
     }
 

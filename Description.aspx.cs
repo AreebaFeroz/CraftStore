@@ -44,12 +44,7 @@ public partial class Description : System.Web.UI.Page
     }
 
 
-    protected void rptrProductDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {   
-
-        /*TEXT BOX DISABLED CODE */
-
-    }
+    
 
 
 
@@ -88,9 +83,6 @@ public partial class Description : System.Web.UI.Page
 
         /* textbox disabled */
 
-
-
-      //  available = dtProducts.Rows[0].Field<int>(5);
 
     }
 

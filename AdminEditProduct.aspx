@@ -128,37 +128,7 @@
         </div>
 
 
-<%--  <h1>Products</h1>
-        <hr />
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">All Products</div>
 
-            <asp:Repeater ID="rptrArtists" runat="server">
-                <HeaderTemplate>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Products</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <th><%# Eval("ArtistID") %></th>
-                        <td><%# Eval("ArtistName") %></td>
-                        <td>Edit</td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </tbody>
-            </table>
-                </FooterTemplate>
-            </asp:Repeater>
-        </div>--%>
     </div>
 
 </asp:Content>

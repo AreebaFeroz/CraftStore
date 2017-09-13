@@ -84,12 +84,10 @@
          
      <div >
             <!-- Default panel contents -->
-      <%--   <div style="height:500px; background-image:url('Images\back1.jpg'); background-size:cover; visibility:hidden;"></div>--%>
-            <asp:Repeater ID="rptrImages" runat="server">
+    <asp:Repeater ID="rptrImages" runat="server">
                 
                 <ItemTemplate>
                  <div class="tab-pane fade in active">    
-         <%--       <div class = "row">--%>
                     <div class = " col-xs-12 col-sm-4 col-md-4 pic-size">
                        
                         <a href="AdminDescription.aspx?ProductID=<%# Eval("ProductID") %>" style="text-decoration:none;">
@@ -116,7 +114,6 @@
                      </a>
 
                     </div>
-                  <%--  </div>--%>
                 </div>
                   
                 </ItemTemplate>

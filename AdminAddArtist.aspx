@@ -35,7 +35,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Artist</th>
-                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -45,7 +45,7 @@
                                 <th>#</th>
                                 <th>Sub-Category</th>
                                 <th>Category</th>
-                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>

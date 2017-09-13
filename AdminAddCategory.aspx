@@ -37,7 +37,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Categories</th>
-                               <%-- <th>Edit</th>--%>
+                              <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>

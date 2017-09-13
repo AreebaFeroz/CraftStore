@@ -36,14 +36,6 @@
                                 <input id="username" name="username" type="text" placeholder="Name" class="form-control"/>
                             </div>
                         </div>
-                        
-
-                        <div class="form-group">
-                            <span class="col-xs-1 col-sm-1 col-md-1 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
-                            <div class="col-xs-11 col-sm-7 col-md-6">
-                                <input id="useremail" name="useremail" type="text" placeholder="Email Address" class="form-control" />
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <span class="col-xs-1 col-sm-1 col-md-1 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>

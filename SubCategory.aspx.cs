@@ -86,7 +86,7 @@ public partial class SubCategory : System.Web.UI.Page
                    }
                  else{
                  ErrorMessage.ForeColor=Color.Red;
-                 ErrorMessage.Text="Adding Artist not Successful";
+                 ErrorMessage.Text="Adding SubCategory not Successful";
                  }
                 BindSubCatRptr();
             }
@@ -104,7 +104,7 @@ public partial class SubCategory : System.Web.UI.Page
             dt = access.SelectFromDatabase(cmd);
             if (dt.Rows.Count > 0)
             {
-                ErrorMessage.Text = "You will first need to delete Produccts from this SubCategory";
+                ErrorMessage.Text = "You will first need to delete Products from this SubCategory";
             }
             else
             {

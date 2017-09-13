@@ -43,7 +43,7 @@
                                          <div class="container-fluid">
                                                 <div class="row">
                                                   <div class="col-xs-12 col-sm-12">
-                                                     <asp:Repeater ID="rptrProductDetails"  runat="server" OnItemDataBound="rptrProductDetails_ItemDataBound">
+                                                     <asp:Repeater ID="rptrProductDetails"  runat="server">
                                                      <ItemTemplate>
                                                     <div class="panel panel-default" style="width: 347px;">
                                                       <div class="panel-heading text-center" >

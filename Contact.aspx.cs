@@ -25,10 +25,9 @@ public partial class Contact : System.Web.UI.Page
     {
 
         string value = Request.Form["username"];
-        string value1 = Request.Form["useremail"];
         string value2 = Request.Form["usermsg"];
 
-        if (value != "" && value1 != "" && value2 != "")
+        if (value != "" && value2 != "")
         {
             ErrorMessage.Text = "";
             lblStatus.ForeColor = Color.Blue;

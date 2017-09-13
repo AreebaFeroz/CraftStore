@@ -57,8 +57,6 @@ public partial class AdminDescription : System.Web.UI.Page
     {
         Int64 ProductID = Convert.ToInt64(Request.QueryString["ProductID"]);
         SqlCommand cmd = new SqlCommand("select A.*,B.*,C.*,D.* from Products A inner join Category B on B.CategoryID=A.CategoryID inner join SubCategory C on C.SubCategoryID=A.SubCategoryID inner join Artist D on D.ArtistID=A.ArtistID where ProductID=" + ProductID + "");
-
-        //SqlCommand cmd = new SqlCommand("select * from Products where ProductID=" + ProductID + "");
         DataTable dtProducts = new DataTable();
         dtProducts = access.SelectFromDatabase(cmd);
         rptrProductDetails.DataSource = dtProducts;

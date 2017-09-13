@@ -7,12 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
+using System.Drawing;
 
 public partial class Cart : System.Web.UI.Page
 {
     public static double Total;
     Accessible access = new Accessible();
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["user"] != null)
@@ -21,10 +23,10 @@ public partial class Cart : System.Web.UI.Page
             {
                 BindCartProducts();
                 CheckOutButton.Enabled = false;
-                CheckOutButton.CssClass="btn btn-primary disabled";
-                FillAddress();              
+                CheckOutButton.CssClass = "btn btn-primary disabled";
+                FillAddress();
             }
-           
+
         }
         else
         {
@@ -53,7 +55,7 @@ public partial class Cart : System.Web.UI.Page
     }
     public void BindCartProducts()
     {
-        
+
         if (Request.Cookies["OrderID"] != null)
         {
             string CookieData = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
@@ -68,9 +70,9 @@ public partial class Cart : System.Web.UI.Page
                 h2NoItems.InnerText = "MY CART (" + CookieDataArray.Length + " Items)";
 
                 DataTable cartitems = new DataTable();
-              
+
                 cartitems.Columns.Add("ProductQnty");
-                
+
                 DataTable det = new DataTable();
                 Int64 CartTotal = 0;
                 //Decimal Total = 0;
@@ -79,16 +81,16 @@ public partial class Cart : System.Web.UI.Page
                 {
                     string ProductID = CookieDataArray[i].ToString().Split('-')[0];
 
-                SqlCommand cmd = new SqlCommand("Select * from Products where ProductID=" + ProductID);
+                    SqlCommand cmd = new SqlCommand("Select * from Products where ProductID=" + ProductID);
 
                     cartitems.Merge(access.SelectFromDatabase(cmd));
 
                     cartitems.Rows[i]["ProductQnty"] = CookieQuantityArray[i].ToString().Split('-')[0];
 
-                    
+
                     CartTotal += Convert.ToInt64(cartitems.Rows[i]["ProductQnty"]) * Convert.ToInt64(cartitems.Rows[i]["Price"]);
-                  
-                   Discount = (CartTotal * 10) / 100;
+
+                    Discount = (CartTotal * 10) / 100;
 
                 }
 
@@ -101,27 +103,27 @@ public partial class Cart : System.Web.UI.Page
                 Cart.Total = CartTotal - Discount;
                 spanTotal.InnerText = "Rs. " + Total.ToString();
 
-               
+
 
 
             }
 
             else
-                {
-                    //TODO Show Empty Cart
-                    h2NoItems.InnerText = "Your Shopping Cart is Empty";
-                    divPriceDetails.Visible = false;
+            {
+                //TODO Show Empty Cart
+                h2NoItems.InnerText = "Your Shopping Cart is Empty";
+                divPriceDetails.Visible = false;
 
-                 }
-           }
-              else
-                 {
-                   //TODO Show Empty Cart
-                         h2NoItems.InnerText = "Your Shopping Cart is Empty";
-                         divPriceDetails.Visible = false;
+            }
+        }
+        else
+        {
+            //TODO Show Empty Cart
+            h2NoItems.InnerText = "Your Shopping Cart is Empty";
+            divPriceDetails.Visible = false;
 
 
-                  }
+        }
 
     }//end of BindCartProducts
 
@@ -139,8 +141,8 @@ public partial class Cart : System.Web.UI.Page
             CheckOutButton.Enabled = true;
             CheckOutButton.CssClass = "btn btn-primary enabled";
         }
-    
-    
+
+
     }
 
     protected void checkOut_Click(object sender, EventArgs e)
@@ -152,80 +154,59 @@ public partial class Cart : System.Web.UI.Page
 
             SqlCommand cmd = new SqlCommand("INSERT INTO [Order](OrderAmount,CustomerID,ShippingAddress) output Inserted.OrderID Values(@amount,@custID,@addr)", con);
 
-            cmd.Parameters.AddWithValue("@amount",  Cart.Total);
+            cmd.Parameters.AddWithValue("@amount", Cart.Total);
             cmd.Parameters.AddWithValue("@custID", Convert.ToInt32(Session["userID"]));
             cmd.Parameters.AddWithValue("@addr", ShippingAddress.Text.ToString());
 
             con.Open();
-           
+
             modified = Convert.ToInt32(cmd.ExecuteScalar());
 
-           Response.Redirect("~/Bill.aspx?OrderID=" + modified);
-
-            
-            
-            
-            
-          
 
 
+            string CookiePID = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
+            string CookieQuantity = Request.Cookies["OrderID"]["Quantity"].Split('=')[0];
 
 
+            List<String> CookiePIDList = CookiePID.Split(',').Select(i => i.Trim()).Where(i => i != string.Empty).ToList();
+            List<String> CookieQuantityList = CookieQuantity.Split(',').Select(i => i.Trim()).Where(i => i != string.Empty).ToList();
 
-           /* if (Request.Cookies["OrderID"] != null)
+
+            for (int i = 0; i < CookiePIDList.Count(); i++)
             {
-                string CookieData = Request.Cookies["OrderID"]["ProductID"].Split('=')[0];
-                string[] CookieDataArray = CookieData.Split(',');
+
+                SqlCommand cmd2 = new SqlCommand("INSERT INTO OrderDetails(DetailProductID,DetailPrice,DetailQuantity,OrderID) VALUES(@ProductCode,@OrderTotalPrice,@OrderQnty,@OrderID)", con);
+                cmd2.Parameters.AddWithValue("@ProductCode", CookiePIDList.ElementAt(i));
+                cmd2.Parameters.AddWithValue("@OrderQnty", CookieQuantityList.ElementAt(i));
 
 
-                string CookieQuantity = Request.Cookies["OrderID"]["Quantity"].Split('=')[0];
-                string[] CookieQuantityArray = CookieQuantity.Split(',');
-                DataTable checkoutItems = new DataTable();
-                int fkorderID;
-                decimal DetPrice;
-                string DetProductID;
-                string Quantity;
-                if (CookieDataArray.Length > 0)
+                DataTable price = new DataTable();
+                SqlCommand cmd3 = new SqlCommand("Select Price from Products where ProductID=" + CookiePIDList.ElementAt(i));
+
+                price = access.SelectFromDatabase(cmd3);
+
+
+                cmd2.Parameters.AddWithValue("@OrderTotalPrice", Convert.ToInt64(price.Rows[0]["Price"]) * Convert.ToInt64(CookieQuantityList.ElementAt(i)));
+                cmd2.Parameters.AddWithValue("@OrderID", modified);
+
+
+
+                int x = cmd2.ExecuteNonQuery();
+
+                if (x > 0)
                 {
-                    for (int i = 0; i < CookieDataArray.Length; i++)
-                    {
-                         DetProductID = CookieDataArray[i].ToString().Split('-')[0];
-                        
-                        SqlCommand cmd1 = new SqlCommand("Select * from Products where ProductID=" + DetProductID);
-                        
-                        checkoutItems.Merge(access.SelectFromDatabase(cmd));
-                        Quantity = CookieQuantityArray[i].ToString().Split('-')[0];
-                        DetPrice = Convert.ToInt64(checkoutItems.Rows[i]["Price"]);
-                        fkorderID = modified;
-                    }
+
+                    subtractItems(CookiePIDList.ElementAt(i), CookieQuantityList.ElementAt(i));
                 }
-            }*/
+
+            }
 
 
 
+            Response.Redirect("~/Bill.aspx?OrderID=" + modified);
 
 
 
-
-
-           
-                        
-                        
-                        
-                        
-                        
-                        
-             //           String SQL_Insert = "INSERT INTO [OrderDetails](DetailProductID,DetailPrice,DetailQuantity,OrderID) Values('" + ArtistName.Text + "')";
-            //if (access.AddAndDelInDatabase(SQL_Insert))
-            //{
-                
-              //  OrderAdded.Text = "Successfully Added";
-            //}
-
-            
-
-           
-           
 
 
 
@@ -233,6 +214,33 @@ public partial class Cart : System.Web.UI.Page
 
 
     }
+
+
+
+
+    private void subtractItems(string pid, string qnty)
+    {
+        String CS = ConfigurationManager.ConnectionStrings["CraftStoreDatabaseConnectionString1"].ConnectionString;
+
+        using (SqlConnection con = new SqlConnection(CS))
+        {
+
+
+            SqlCommand cmd3 = new SqlCommand("Select InStock From Products where ProductID='" + pid + "'");
+            con.Open();
+            DataTable qntyTable = access.SelectFromDatabase(cmd3);
+            Int64 quantity = Convert.ToInt64(qntyTable.Rows[0]["InStock"]);
+            Int64 purchasedQnty = Convert.ToInt64(qnty);
+            Int64 updateQuantity = (quantity - purchasedQnty);
+            SqlCommand cmd = new SqlCommand("Update Products set InStock='" + updateQuantity + "' where ProductID='" + pid + "'", con);
+
+            cmd.ExecuteNonQuery();
+
+        }
+    }
+
+
+
 
     protected void btnRemoveItem_Click(object sender, EventArgs e)
     {
@@ -290,4 +298,4 @@ public partial class Cart : System.Web.UI.Page
 
 
 
-    
+

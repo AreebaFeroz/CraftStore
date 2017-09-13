@@ -16,14 +16,6 @@
                 </div>
             </div>
            
-            <%-- <div class="form-group">
-                <asp:Label ID="Label2" runat="server" CssClass="col-md-2 control-label" Text="Price"></asp:Label>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPrice"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
-           
              <div class="form-group">
                 <asp:Label ID="Label2" runat="server" CssClass="col-md-2 control-label" Text="Selling Price"></asp:Label>
                 <div class="col-md-3">
@@ -86,29 +78,16 @@
                    </div>
             </div>
             
-            <%--<div class="form-group">
-                <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Product Details"></asp:Label>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtPDetails" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPDetails"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
+          
         
             <div class="form-group">
                 <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
                 <div class="col-md-3">
                     <asp:FileUpload ID="fuImg01" CssClass="form-control" runat="server" />
-                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>--%>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>
                 </div>
             </div>
         
-           <%--<div class="form-group">
-                <asp:Label ID="Label12" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
-                <div class="col-md-3">
-                    <asp:FileUpload ID="fuImg02" CssClass="form-control" runat="server" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg02"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
         
             <div class="form-group">
                 <asp:Label ID="Label146" runat="server" CssClass="col-md-2 control-label" Text="Free Delivery"></asp:Label>
@@ -140,36 +119,7 @@
         </div>
 
 
-<%--  <h1>Products</h1>
-        <hr />
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">All Products</div>--%>
 
-          <%--  <asp:Repeater ID="rptrProducts" runat="server">
-                <HeaderTemplate>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Products</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <th><%# Eval("ProductID") %></th>
-                        <td><%# Eval("ProductName") %></td>
-                        <td>Edit</td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </tbody>
-            </table>
-                </FooterTemplate>
-            </asp:Repeater>--%>
         </div>
     
 </asp:Content>
