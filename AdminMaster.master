@@ -8,14 +8,18 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+  
  <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
     <link href="css/font-awesome.min.css" rel="stylesheet"/>
     <link href="css/bootstrap-social.css" rel="stylesheet"/>
     <link href="css/Footer-with-button-logo.css" rel="stylesheet"/>
-
+      <style>
+    .dropdown-menu > li > a {
+  color: #fff;
+     }
+</style>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -43,33 +47,26 @@
                 
                 <ul class="nav navbar-nav">
 
-                    <li class="active"><a href="AdminHome.aspx"><span class="glyphicon glyphicon-home"
-					aria-hidden="true"></span> Home</a></li>
+                    <li><a href="AdminHome.aspx"><span class="glyphicon glyphicon-home"
+					aria-hidden="true"></span> My Products</a></li>
                     <li><a href="AdminAddproduct.aspx"><i class="fa fa-product-hunt"></i> Add Product</a></li>
                     <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"
 					aria-hidden="true"></span> Manage<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="background-color:#373737;">
                                     <li><a href="AdminAddArtist.aspx">Add Artist</a></li>
                                     <li><a href="AdminAddCategory.aspx">Add Category</a></li>
                                     <li><a href="SubCategory.aspx">Add Sub Category</a></li>
                                 </ul>
                             </li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Contact</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                                <li><a id="myCart">
-					<i class="fa fa-shopping-cart"></i>
-					Cart</a>
-				</li>
-                <li><a id="logoutButton" href="Home.aspx">
+                                
+                <li><asp:LinkButton runat="server" id="logoutButton" OnClick="logoutSession">
 				<span class="glyphicon glyphicon-log-out"></span>
-				Logout</a></li>
+				Logout</asp:LinkButton></li>
                     
-				<%--<li><a id="loginButton" href="Login.aspx">
-					<span class="glyphicon glyphicon-log-in"></span>
-					Login</a>
-				</li>--%>
 		</ul>
             </div>
 
@@ -147,10 +144,7 @@
 
 
 
-    <!--footer-->
-
-
-    <footer id="myFooter">
+       <footer id="myFooter">
       
       <div class="container">
           
@@ -164,71 +158,50 @@
                    
                      
                  <div class="col-sm-2">
-                             
-                    <h5>Get started</h5>
-                               
-                       <ul>
+                            
                                     
-                           <li><a href="#">Home</a></li>
+                           <h5><a href="home.aspx">Home</a></h5>
+                            
+                            <h5><a href="About.aspx">About us</a></h5>
                                     
-                           <li><a href="#">Sign up</a></li>
+                           <h5><a href="Signup.aspx">Sign up</a></h5>
                                    
-                           <li><a href="#">Downloads</a></li>
+                           
                               
-                      </ul>
+                      
                             
                  </div>
                            
                 
-                 <div class="col-sm-2">
+                 <div class="col-sm-3">
                                
-                     <h5>About us</h5>
+                     <h5>Location</h5>
                                
-                      <ul>
-                                   
-                        <li><a href="#">Company Information</a></li>
-                                   
-                        <li><a href="#">Contact us</a></li>
-                                   
-                        <li><a href="#">Reviews</a></li>
-                                
-                      </ul>
+
+                        <p>Contact us and we'll get back to you <br />within 24 hours.</p>
+                        <p><span class="glyphicon glyphicon-map-marker"></span> Karachi, Pakistan.</p>
+                        <p><span class="glyphicon glyphicon-phone"></span> +021 1515151515</p>
+                        <p><span class="glyphicon glyphicon-envelope"></span> craftstore@abc.com</p> 
+    
                             
                 </div>
                             
 
-                <div class="col-sm-2">
-                               
-                    <h5>Support</h5>
-                               
-                    <ul>
-                                    
-                       <li><a href="#">FAQ</a></li>
-                                    
-                       <li><a href="#">Help desk</a></li>
-                                    
-                       <li><a href="#">Forums</a></li>
-                                
-                   </ul>
-                           
-                </div>
+                
                             
 
-                <div class="col-sm-3">
+                <div class="col-sm-4 text-center">
                                 
                    <div class="social-networks">
                                    
-                      <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                    
-                      <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                      <h3 >Connect Us on Facebook! </h3>
+                      <a href="https://www.facebook.com/CraftStore-1459531557448527/" class="facebook"><i class="fa fa-facebook"></i></a>
                                    
-                      <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
                                
                    </div>
                                 
                    
-                   <a data-toggle="modal" data-target="#reserveModal" id="reserveButton" type="button" class="btn" 
-						style="white-space:normal !important;">Contact us</a>
+             
                             
                 </div>
           </div>
@@ -244,6 +217,7 @@
      <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

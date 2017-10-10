@@ -11,4 +11,10 @@ public partial class AdminMaster : System.Web.UI.MasterPage
     {
 
     }
+    protected void logoutSession(object sender, EventArgs e)
+    {
+
+        Session["admin"] = null;
+        Response.Redirect("~/Home.aspx");
+    }
 }

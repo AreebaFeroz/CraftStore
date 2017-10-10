@@ -16,14 +16,6 @@
                 </div>
             </div>
            
-            <%-- <div class="form-group">
-                <asp:Label ID="Label2" runat="server" CssClass="col-md-2 control-label" Text="Price"></asp:Label>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPrice"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
-           
              <div class="form-group">
                 <asp:Label ID="Label2" runat="server" CssClass="col-md-2 control-label" Text="Selling Price"></asp:Label>
                 <div class="col-md-3">
@@ -52,7 +44,7 @@
                 <asp:Label ID="Label5" runat="server" CssClass="col-md-2 control-label" Text="Sub Category"></asp:Label>
                 <div class="col-md-3">
                     <asp:DropDownList ID="ddlSubCategory"  AutoPostBack="true" CssClass="form-control" runat="server"></asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="ddlSubCategory" InitialValue="0"></asp:RequiredFieldValidator>
+                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator5" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="ddlSubCategory" InitialValue="0"></asp:RequiredFieldValidator>--%>
                 </div>
             </div>
             
@@ -83,33 +75,19 @@
                 <asp:Label ID="Label8" runat="server" CssClass="col-md-2 control-label" Text="Descriptions"></asp:Label>
                 <div class="col-md-3">
                     <asp:TextBox ID="txtDesc" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtDesc"></asp:RequiredFieldValidator>
-                </div>
+                   </div>
             </div>
             
-            <%--<div class="form-group">
-                <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Product Details"></asp:Label>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtPDetails" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="txtPDetails"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
+          
         
             <div class="form-group">
                 <asp:Label ID="Label9" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
                 <div class="col-md-3">
                     <asp:FileUpload ID="fuImg01" CssClass="form-control" runat="server" />
-                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>--%>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg01"></asp:RequiredFieldValidator>
                 </div>
             </div>
         
-           <%--<div class="form-group">
-                <asp:Label ID="Label12" runat="server" CssClass="col-md-2 control-label" Text="Upload Image"></asp:Label>
-                <div class="col-md-3">
-                    <asp:FileUpload ID="fuImg02" CssClass="form-control" runat="server" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" CssClass="text-danger" runat="server" ErrorMessage="This field is Required !" ControlToValidate="fuImg02"></asp:RequiredFieldValidator>
-                </div>
-            </div>--%>
         
             <div class="form-group">
                 <asp:Label ID="Label146" runat="server" CssClass="col-md-2 control-label" Text="Free Delivery"></asp:Label>
@@ -134,43 +112,15 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
                     <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
+                    <asp:Label ID="ErrorMessage" runat="server" Text=""></asp:Label>
                 </div>
-                <asp:Label ID="Message" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="Message" runat="server" ></asp:Label>
             </div>
         </div>
 
 
-  <h1>Products</h1>
-        <hr />
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">All Products</div>
 
-            <asp:Repeater ID="rptrArtists" runat="server">
-                <HeaderTemplate>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Products</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <th><%# Eval("ArtistID") %></th>
-                        <td><%# Eval("ArtistName") %></td>
-                        <td>Edit</td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </tbody>
-            </table>
-                </FooterTemplate>
-            </asp:Repeater>
         </div>
-    </div>
+    
 </asp:Content>
 

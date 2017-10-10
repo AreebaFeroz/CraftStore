@@ -11,7 +11,6 @@
     <div class="Absolute-Center is-Responsive">
      
       <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <%--<form action="" id="loginForm">--%>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <asp:textbox id="username" runat="server" class="form-control" placeholder="username"></asp:textbox>         
@@ -41,10 +40,9 @@
           <br />
          
           <div class="form-group text-center">
-            <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="AdminLogin.aspx">Login as Admin</a>
+           <a href="AdminLogin.aspx">Login as Admin</a>
             <br />Don't have a account yet? <a href="Signup.aspx">Sign Up</a>
-          </div>
-        <%--</form>--%>        
+          </div>        
       </div>  
     </div>    
   </div>

@@ -47,11 +47,26 @@ public partial class Login : System.Web.UI.Page
                     Response.Cookies["UNAME"].Expires = DateTime.Now.AddDays(-1);
                     Response.Cookies["PWD"].Expires = DateTime.Now.AddDays(-1);
                 }
+                int userID = dt.Rows[0].Field<int>(0);
+                Session["userID"] = userID;
                 Session["user"] = username.Text;
-                Response.Redirect("~/UserHome.aspx");
+
+               
+                        if (Request.QueryString["ProductID"] != null)
+                        {
+                            Response.Redirect("~/Description.aspx?ProductID=" + Request.QueryString["ProductID"]);
+ 
+                        }
+                       
+                    
+                else
+                {
+                    Response.Redirect("~/Home.aspx");
+                }
+
                 Session.RemoveAll();
             }
-            else 
+            else
             {
                 lblError.Text = "Invalid Username or password";
             }

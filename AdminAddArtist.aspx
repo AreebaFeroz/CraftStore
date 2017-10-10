@@ -18,6 +18,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
                     <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
+                    <asp:Label ID="ErrorMessage" runat="server" Text=""></asp:Label>               
                 </div>
             </div>
          </div>
@@ -27,14 +28,14 @@
             <!-- Default panel contents -->
             <div class="panel-heading">All Artists</div>
 
-            <asp:Repeater ID="rptrArtists" runat="server">
+            <asp:Repeater ID="rptrArtists" runat="server" OnItemCommand="ItemCommand">
                 <HeaderTemplate>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Artist</th>
-                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +44,7 @@
                     <tr>
                         <th><%# Eval("ArtistID") %></th>
                         <td><%# Eval("ArtistName") %></td>
-                        <td>Edit</td>
+                         <td><asp:LinkButton ID ="button_delete" CausesValidation="false" CommandName="Delete" OnClientClick="return confirm('Are you sure to delete?');" CommandArgument = '<%# Eval("ArtistID") %>'   Text ="Delete" runat="server" ></asp:LinkButton>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
